@@ -12,21 +12,28 @@
 
 ## About
 
-This is a web application to practice React fundamental concepts.
+This is a web application to practice React fundamental concepts focusing on component diagrams, shared, and local state.
 
 ## React Component Diagram
 
+### Start of day
+
 <img style="width:600px" src="./public/TapRoom.jpg">
+
+### End of day
+
+<img style="width:600px" src="./public/TapRoomFinish.jpg">
 
 ## Known Bugs
 
-No known bugs at this time.
+The prices text on the beer list page should either be green, yellow, or orange depending on price but currently will not.
 
 ## Technologies Used
 
 - HTML
 - CSS
 - JavaScript
+- Material UI
 - React
 - Draw.io
 

@@ -85,7 +85,7 @@ export default function NewBeerForum(props) {
         </Grid>
       </Grid>
 
-      <Button type="submit">Create Beer</Button>
+      <Button type="submit">Add Beer</Button>
     </form>
   );
 }
