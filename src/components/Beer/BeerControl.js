@@ -48,7 +48,7 @@ const beerList = [
     flavor: "Something",
     price: 5,
     alcoholContent: 5.6,
-    pints: 124,
+    pints: 1,
   },
 ];
 
@@ -62,6 +62,7 @@ class BeerControl extends React.Component {
       selectedBeer: null,
       beerList: beerList,
       addBeerButton: "",
+      disableButton: null,
     };
   }
   showNewBeerForum = () => {
@@ -87,12 +88,17 @@ class BeerControl extends React.Component {
 
   handleIncrementingBeerPints = (id) => {
     let newBeerList = this.state.beerList.map((entry) => entry);
-    newBeerList.find((entry) => entry.id === id).pints += 12;
+    newBeerList.find((entry) => entry.id === id).pints += 1;
     this.setState({ beerList: newBeerList });
   };
   handleDecrementingBeerPints = (id) => {
     let newBeerList = this.state.beerList.map((entry) => entry);
-    newBeerList.find((entry) => entry.id === id).pints -= 12;
+    newBeerList.find((entry) => entry.id === id).pints -= 1;
+    this.setState({ beerList: newBeerList });
+  };
+
+  handleRemovingBeerFromList = (id) => {
+    const newBeerList = this.state.beerList.filter((entry) => entry.id !== id);
     this.setState({ beerList: newBeerList });
   };
 
@@ -124,6 +130,7 @@ class BeerControl extends React.Component {
             onBeerPintIncrement={this.handleIncrementingBeerPints}
             onBeerPintDecrement={this.handleDecrementingBeerPints}
             onShowBeerDetail={this.showBeerDetail}
+            onRemoveBeer={this.handleRemovingBeerFromList}
             beerList={this.state.beerList}
           />
           <Button onClick={() => this.showNewBeerForum()}>

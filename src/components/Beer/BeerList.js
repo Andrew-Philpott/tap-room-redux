@@ -21,9 +21,6 @@ function BeerList(props) {
                   <TableCell component="th" scope="row">
                     On Tap
                   </TableCell>
-                  <TableCell component="th" scope="row">
-                    Id
-                  </TableCell>
                   <TableCell align="right">Brand</TableCell>
                   <TableCell align="right">Flavor</TableCell>
                   <TableCell align="right">ABV</TableCell>
@@ -31,38 +28,76 @@ function BeerList(props) {
                   <TableCell align="right">Pints</TableCell>
                   <TableCell align="right">Sell</TableCell>
                   <TableCell align="right">Restock</TableCell>
+                  <TableCell align="right">Remove</TableCell>
                 </TableRow>
               </TableHead>
               <TableBody>
-                {props.beerList.map((beer) => (
-                  <TableRow key={beer.id}>
-                    <TableCell
-                      onClick={() => props.onShowBeerDetail(beer.id)}
-                      component="th"
-                      scope="row"
-                    >
-                      {beer.name}
-                    </TableCell>
-                    <TableCell align="right">{beer.id}</TableCell>
-                    <TableCell align="right">{beer.brand}</TableCell>
-                    <TableCell align="right">{beer.flavor}</TableCell>
-                    <TableCell align="right">{beer.alcoholContent}</TableCell>
-                    <TableCell align="right">{beer.price}</TableCell>
-                    <TableCell align="right">{beer.pints}</TableCell>
-                    <TableCell
-                      onClick={() => props.onBeerPintDecrement(beer.id)}
-                      align="right"
-                    >
-                      -
-                    </TableCell>
-                    <TableCell
-                      onClick={() => props.onBeerPintIncrement(beer.id)}
-                      align="right"
-                    >
-                      +
-                    </TableCell>
-                  </TableRow>
-                ))}
+                {props.beerList.map((beer) =>
+                  beer.pints > 0 ? (
+                    <TableRow key={beer.id}>
+                      <TableCell
+                        onClick={() => props.onShowBeerDetail(beer.id)}
+                        component="th"
+                        scope="row"
+                      >
+                        {beer.name}
+                      </TableCell>
+                      <TableCell align="right">{beer.brand}</TableCell>
+                      <TableCell align="right">{beer.flavor}</TableCell>
+                      <TableCell align="right">{beer.alcoholContent}</TableCell>
+                      <TableCell align="right">{beer.price}</TableCell>
+                      <TableCell align="right">{beer.pints}</TableCell>
+                      <TableCell
+                        onClick={() => props.onBeerPintDecrement(beer.id)}
+                        align="right"
+                      >
+                        -
+                      </TableCell>
+                      {beer.pints > 0}
+                      <TableCell
+                        onClick={() => props.onBeerPintIncrement(beer.id)}
+                        align="right"
+                      >
+                        +
+                      </TableCell>
+                      <TableCell
+                        onClick={() => props.onRemoveBeer(beer.id)}
+                        align="right"
+                      >
+                        X
+                      </TableCell>
+                    </TableRow>
+                  ) : (
+                    <TableRow key={beer.id}>
+                      <TableCell
+                        onClick={() => props.onShowBeerDetail(beer.id)}
+                        component="th"
+                        scope="row"
+                      >
+                        {beer.name}
+                      </TableCell>
+                      <TableCell align="right">{beer.brand}</TableCell>
+                      <TableCell align="right">{beer.flavor}</TableCell>
+                      <TableCell align="right">{beer.alcoholContent}</TableCell>
+                      <TableCell align="right">{beer.price}</TableCell>
+                      <TableCell align="right">{beer.pints}</TableCell>
+                      <TableCell align="right">-</TableCell>
+                      {beer.pints > 0}
+                      <TableCell
+                        onClick={() => props.onBeerPintIncrement(beer.id)}
+                        align="right"
+                      >
+                        +
+                      </TableCell>
+                      <TableCell
+                        onClick={() => props.onRemoveBeer(beer.id)}
+                        align="right"
+                      >
+                        X
+                      </TableCell>
+                    </TableRow>
+                  )
+                )}
               </TableBody>
             </Table>
           </TableContainer>
@@ -77,6 +112,7 @@ BeerList.propTypes = {
   onShowBeerDetail: PropTypes.func,
   onBeerPintIncrement: PropTypes.func,
   onBeerPintDecrement: PropTypes.func,
+  onRemoveBeer: PropTypes.func,
 };
 
 export default BeerList;
