@@ -11,12 +11,12 @@ const useStyles = makeStyles({
   },
 });
 
-export default function NewBeerForum(props) {
-  const classes = useStyles();
-  function handleNewBeerFormSubmission(event) {
+export default function EditBeerForum(props) {
+  const { beer, onEditBeer } = props;
+  function handleEditBeerFormSubmission(event) {
     event.preventDefault();
-    props.onNewBeerCreation({
-      id: v4(),
+    onEditBeer({
+      id: beer.id,
       name: event.target.name.value,
       brand: event.target.brand.value,
       color: event.target.color.value,
@@ -27,8 +27,10 @@ export default function NewBeerForum(props) {
       pints: event.target.pints.value,
     });
   }
+
   return (
-    <form onSubmit={handleNewBeerFormSubmission}>
+    <form onSubmit={handleEditBeerFormSubmission}>
+      <Input id="id" type="hidden" value={beer.id} name="id" />
       <Grid container>
         <Grid item xs={12}>
           <FormControl variant="outlined">
@@ -85,12 +87,12 @@ export default function NewBeerForum(props) {
         </Grid>
       </Grid>
 
-      <Button type="submit">Create Beer</Button>
+      <Button type="submit">Edit Beer</Button>
     </form>
   );
 }
 
-NewBeerForum.propTypes = {
-  onNewBeerCreation: PropTypes.func,
-  buttonText: PropTypes.string,
+EditBeerForum.propTypes = {
+  onEditBeer: PropTypes.func,
+  beer: PropTypes.object,
 };

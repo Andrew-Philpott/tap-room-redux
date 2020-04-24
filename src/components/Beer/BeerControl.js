@@ -4,6 +4,7 @@ import BeerList from "./BeerList";
 import NewBeerForum from "./NewBeerForum";
 import { Button } from "@material-ui/core";
 import BeerDetail from "./BeerDetail";
+import EditBeerForum from "./EditBeerForum";
 
 const beerList = [
   {
@@ -58,6 +59,7 @@ class BeerControl extends React.Component {
     this.state = {
       listAvailableOnPage: true,
       formVisibleOnPage: false,
+      editFormVisibleOnPage: false,
       detailVisibleOnPage: false,
       selectedBeer: null,
       beerList: beerList,
@@ -79,11 +81,34 @@ class BeerControl extends React.Component {
     this.setState({ detailVisibleOnPage: false });
     this.setState({ selectedBeer: null });
   };
+  showEditBeerForum = (id) => {
+    const beer = this.state.beerList.filter((entry) => entry.id === id)[0];
+    this.setState({ selectedBeer: beer });
+    this.setState({ editing: true });
+  };
+  hideEditBeerForum = () => {
+    this.setState({ editing: false });
+  };
+
+  handleChange(event) {
+    this.setState({ value: event.target.value });
+  }
 
   handleAddingNewBeerToList = (newBeer) => {
     const newBeerList = this.state.beerList.concat(newBeer);
     this.setState({ beerList: newBeerList });
     this.setState({ formVisibleOnPage: false });
+  };
+
+  handleEditingBeer = (editBeer) => {
+    let newBeerList = this.state.beerList.map((entry) => entry);
+    let editBeerIndex = newBeerList.indexOf(
+      newBeerList.find((entry) => entry.id === editBeer.id)
+    );
+    newBeerList[editBeerIndex] = editBeer;
+    this.setState({ beerList: newBeerList });
+    this.setState({ editing: false });
+    this.setState({ selectedBeer: null });
   };
 
   handleIncrementingBeerPints = (id) => {
@@ -105,7 +130,17 @@ class BeerControl extends React.Component {
   render() {
     let currentlyVisibleState = null;
     let addBeerButton = null;
-    if (this.state.selectedBeer != null) {
+    if (this.state.editing) {
+      currentlyVisibleState = (
+        <div>
+          <EditBeerForum
+            onEditBeer={this.handleEditingBeer}
+            beer={this.state.selectedBeer}
+          ></EditBeerForum>
+          <Button onClick={() => this.hideBeerDetail()}>Return to beers</Button>
+        </div>
+      );
+    } else if (this.state.selectedBeer != null) {
       currentlyVisibleState = (
         <div>
           <BeerDetail beer={this.state.selectedBeer}></BeerDetail>
@@ -131,6 +166,7 @@ class BeerControl extends React.Component {
             onBeerPintDecrement={this.handleDecrementingBeerPints}
             onShowBeerDetail={this.showBeerDetail}
             onRemoveBeer={this.handleRemovingBeerFromList}
+            onShowEditBeer={this.showEditBeerForum}
             beerList={this.state.beerList}
           />
           <Button onClick={() => this.showNewBeerForum()}>

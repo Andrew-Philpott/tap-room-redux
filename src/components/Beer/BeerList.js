@@ -28,6 +28,7 @@ function BeerList(props) {
                   <TableCell align="right">Pints</TableCell>
                   <TableCell align="right">Sell</TableCell>
                   <TableCell align="right">Restock</TableCell>
+                  <TableCell align="right">Edit</TableCell>
                   <TableCell align="right">Remove</TableCell>
                 </TableRow>
               </TableHead>
@@ -53,12 +54,17 @@ function BeerList(props) {
                       >
                         -
                       </TableCell>
-                      {beer.pints > 0}
                       <TableCell
                         onClick={() => props.onBeerPintIncrement(beer.id)}
                         align="right"
                       >
                         +
+                      </TableCell>
+                      <TableCell
+                        onClick={() => props.onShowEditBeer(beer.id)}
+                        align="right"
+                      >
+                        Edit
                       </TableCell>
                       <TableCell
                         onClick={() => props.onRemoveBeer(beer.id)}
@@ -82,12 +88,17 @@ function BeerList(props) {
                       <TableCell align="right">{beer.price}</TableCell>
                       <TableCell align="right">{beer.pints}</TableCell>
                       <TableCell align="right">-</TableCell>
-                      {beer.pints > 0}
                       <TableCell
                         onClick={() => props.onBeerPintIncrement(beer.id)}
                         align="right"
                       >
                         +
+                      </TableCell>
+                      <TableCell
+                        onClick={() => props.onShowEditBeer(beer.id)}
+                        align="right"
+                      >
+                        Edit
                       </TableCell>
                       <TableCell
                         onClick={() => props.onRemoveBeer(beer.id)}
@@ -110,6 +121,7 @@ function BeerList(props) {
 BeerList.propTypes = {
   beerList: PropTypes.array,
   onShowBeerDetail: PropTypes.func,
+  onShowEditBeer: PropTypes.func,
   onBeerPintIncrement: PropTypes.func,
   onBeerPintDecrement: PropTypes.func,
   onRemoveBeer: PropTypes.func,
