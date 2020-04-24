@@ -25,7 +25,7 @@ function BeerList(props) {
         </TableHead>
         <TableBody>
           {props.beerList.map((beer) => (
-            <TableRow>
+            <TableRow key={beer.id}>
               <TableCell component="th" scope="row">
                 {beer.name}
               </TableCell>

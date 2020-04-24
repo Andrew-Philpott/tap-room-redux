@@ -68,7 +68,7 @@ class BeerControl extends React.Component {
   };
 
   handleAddingNewBeerToList = (newBeer) => {
-    const newBeerList = this.state.BeerList.concat(newBeer);
+    const newBeerList = this.state.beerList.concat(newBeer);
     this.setState({ beerList: newBeerList });
     this.setState({ formVisibleOnPage: false });
   };
