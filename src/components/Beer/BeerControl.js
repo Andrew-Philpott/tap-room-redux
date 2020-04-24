@@ -3,6 +3,7 @@ import { v4 } from "uuid";
 import BeerList from "./BeerList";
 import NewBeerForum from "./NewBeerForum";
 import { Button } from "@material-ui/core";
+import BeerDetail from "./BeerDetail";
 
 const beerList = [
   {
@@ -55,7 +56,10 @@ class BeerControl extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
+      listAvailableOnPage: true,
       formVisibleOnPage: false,
+      detailVisibleOnPage: false,
+      selectedBeer: null,
       beerList: beerList,
       addBeerButton: "",
     };
@@ -65,6 +69,16 @@ class BeerControl extends React.Component {
   };
   hideNewBeerForum = () => {
     this.setState({ formVisibleOnPage: false });
+  };
+  showBeerDetail = (id) => {
+    console.log(id);
+    const beer = this.state.beerList.filter((entry) => entry.id === id)[0];
+    console.log(beer);
+    this.setState({ selectedBeer: beer });
+    console.log(this.state.selectedBeer);
+  };
+  hideBeerDetail = () => {
+    this.setState({ detailVisibleOnPage: false });
   };
 
   handleAddingNewBeerToList = (newBeer) => {
@@ -76,7 +90,14 @@ class BeerControl extends React.Component {
   render() {
     let currentlyVisibleState = null;
     let addBeerButton = null;
-    if (this.state.formVisibleOnPage) {
+    if (this.state.selectedBeer != null) {
+      currentlyVisibleState = (
+        <div>
+          <BeerDetail beer={this.state.selectedBeer}></BeerDetail>
+          <Button onClick={() => this.hideBeerDetail}>Return to beers</Button>
+        </div>
+      );
+    } else if (this.state.formVisibleOnPage) {
       currentlyVisibleState = (
         <div>
           <NewBeerForum
@@ -90,7 +111,10 @@ class BeerControl extends React.Component {
     } else {
       currentlyVisibleState = (
         <div>
-          <BeerList beerList={this.state.beerList} />
+          <BeerList
+            onShowBeerDetail={this.showBeerDetail}
+            beerList={this.state.beerList}
+          />
           <Button onClick={() => this.showNewBeerForum()}>
             Create a new beer
           </Button>

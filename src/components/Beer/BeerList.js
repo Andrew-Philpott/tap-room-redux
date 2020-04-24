@@ -7,6 +7,7 @@ import TableContainer from "@material-ui/core/TableContainer";
 import TableHead from "@material-ui/core/TableHead";
 import TableRow from "@material-ui/core/TableRow";
 import Paper from "@material-ui/core/Paper";
+import { Button } from "@material-ui/core";
 
 function BeerList(props) {
   return (
@@ -25,15 +26,21 @@ function BeerList(props) {
         </TableHead>
         <TableBody>
           {props.beerList.map((beer) => (
-            <TableRow key={beer.id}>
-              <TableCell component="th" scope="row">
-                {beer.name}
-              </TableCell>
-              <TableCell align="right">{beer.brand}</TableCell>
-              <TableCell align="right">{beer.flavor}</TableCell>
-              <TableCell align="right">{beer.alcoholContent}</TableCell>
-              <TableCell align="right">{beer.price}</TableCell>
-            </TableRow>
+            <div>
+              <TableRow key={beer.id}>
+                <TableCell component="th" scope="row">
+                  {beer.name}
+                </TableCell>
+                <TableCell align="right">{beer.brand}</TableCell>
+                <TableCell align="right">{beer.flavor}</TableCell>
+                <TableCell align="right">{beer.alcoholContent}</TableCell>
+                <TableCell align="right">{beer.price}</TableCell>
+              </TableRow>
+
+              <Button onClick={() => props.onShowBeerDetail(beer.id)}>
+                {beer.id}
+              </Button>
+            </div>
           ))}
         </TableBody>
       </Table>
@@ -42,8 +49,8 @@ function BeerList(props) {
 }
 
 BeerList.propTypes = {
-  merchandiseList: PropTypes.array,
-  onRemoveItem: PropTypes.func,
+  beerList: PropTypes.array,
+  onShowBeerDetail: PropTypes.func,
 };
 
 export default BeerList;
