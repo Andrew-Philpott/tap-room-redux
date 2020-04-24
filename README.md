@@ -36,19 +36,23 @@ Here are some possible user stories to get you started. The application should h
 - [x] As a user, I want to be able to delete a keg.
 - [x] As a user, I want a keg to update to say "Out of Stock" once it's empty.
 - [x] As a user, I want kegs with less than 10 pints to include a message that says "Almost Empty" so I can try a pint before it's gone!
-- [] As a user, I want to have kegs prices to be color-coded for easy readability. This could be based on their price, the style of beer or kombucha, or the amount of pints left.
 - [x] As a user, I want this application to be nicely styled. (Use stylesheets and CSS objects!)
       Objectives
-      This week's progress will be checked using the following objectives:
 
-Application compiles and runs and all required functionality is included.
-Functional and class components are used correctly.
-Application effectively uses local and shared state.
-Props are used correctly and always include PropTypes.
-README includes an accurate representation of the application's component tree.
-Commit history shows eight hours of work.
-Project was submitted by the Friday deadline.
-Project demonstrates an understanding of this week's concepts. If prompted, you can discuss your code with an instructor using the correct terminology.
+As a user, I want to have kegs prices to be color-coded for easy readability. This could be based on their price, the style of beer or kombucha, or the amount of pints left.
+
+Objectives
+This week's progress will be checked using the following objectives:
+
+Application compiles and runs and all required functionality is included. Functional and class components are used correctly. Application effectively uses local and shared state. Props are used correctly and always include PropTypes. README includes an accurate representation of the application's component tree. Commit history shows eight hours of work. Project was submitted by the Friday deadline. Project demonstrates an understanding of this week's concepts. If prompted, you can discuss your code with an instructor using the correct terminology.
+
+## Setup/Installation Requirements
+
+_Clone this repository._
+_Navigate to tap-room directory_
+_\$npm install to download dependencies_
+_\$npm run start to run the application_
+_Application will run on localhost:3000_
 
 ## React Component Diagrams
 
