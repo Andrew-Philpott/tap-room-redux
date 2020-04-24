@@ -1,40 +1,52 @@
 import React from "react";
 import PropTypes from "prop-types";
-import { Typography } from "@material-ui/core";
-import EditBeerForum from "./EditBeerForum";
+import {
+  Typography,
+  ListItem,
+  List,
+  Container,
+  Grid,
+  makeStyles,
+} from "@material-ui/core";
+
+const styles = makeStyles((theme) => ({
+  root: {
+    flexGrow: 1,
+  },
+  paper: {
+    padding: theme.spacing(2),
+    textAlign: "center",
+    color: theme.palette.text.secondary,
+  },
+}));
 
 function BeerDetail(props) {
-  if (props.editing) {
-    return <EditBeerForum onEditBeer={props.onEditBeer}></EditBeerForum>;
-  } else {
-    return (
-      <React.Fragment>
-        <Typography>
-          {props.beer.name}
-          {props.beer.brand}
-          {props.beer.color}
-          {props.beer.color}
-          {props.beer.aroma}
-          {props.beer.flavor}
-          {props.beer.alcoholContent}
-          {props.beer.price}
-          {props.beer.pints}
-        </Typography>
-      </React.Fragment>
-    );
-  }
+  const { beer } = props;
+  return (
+    <React.Fragment>
+      <h1>Beer details</h1>
+      <Container>
+        <Grid container component={styles.paper}>
+          <Grid item xs={12}>
+            <Typography variant="h6">
+              <p>Name: {beer.name}</p>
+              <p>Brand: {beer.brand}</p>
+              <p>Color: {beer.color}</p>
+              <p>Aroma: {beer.aroma}</p>
+              <p>Flavor: {beer.flavor}</p>
+              <p>Alcohol Content: {beer.alcoholContent}</p>
+              <p>Price: ${beer.price}</p>
+              <p>Pints Left: {beer.pints}</p>
+            </Typography>
+          </Grid>
+        </Grid>
+      </Container>
+    </React.Fragment>
+  );
 }
 
 BeerDetail.propTypes = {
-  name: PropTypes.string,
-  brand: PropTypes.string,
-  color: PropTypes.string,
-  aroma: PropTypes.string,
-  flavor: PropTypes.string,
-  price: PropTypes.number,
-  alcoholContent: PropTypes.number,
-  pints: PropTypes.number,
-  onEditBeer: PropTypes.func,
+  beer: PropTypes.object,
 };
 
 export default BeerDetail;

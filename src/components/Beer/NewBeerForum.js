@@ -92,5 +92,4 @@ export default function NewBeerForum(props) {
 
 NewBeerForum.propTypes = {
   onNewBeerCreation: PropTypes.func,
-  buttonText: PropTypes.string,
 };

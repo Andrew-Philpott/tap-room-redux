@@ -7,9 +7,21 @@ import TableContainer from "@material-ui/core/TableContainer";
 import TableHead from "@material-ui/core/TableHead";
 import TableRow from "@material-ui/core/TableRow";
 import Paper from "@material-ui/core/Paper";
-import { Grid, Container } from "@material-ui/core";
-
+import { Grid, Container, Typography } from "@material-ui/core";
+import { makeStyles } from "@material-ui/core";
+const useStyles = makeStyles({
+  orange: {
+    textDecorationColor: "orange",
+  },
+  yellow: {
+    textDecorationColor: "yellow",
+  },
+  green: {
+    textDecorationColor: "green",
+  },
+});
 function BeerList(props) {
+  const classes = useStyles();
   return (
     <Container>
       <Grid>
@@ -44,13 +56,32 @@ function BeerList(props) {
                       {beer.pints > 10
                         ? ""
                         : beer.pints > 0
-                        ? " GET IT WHILE IT LASTS"
-                        : " OUT OF STOCK"}
+                        ? " Almost Empty"
+                        : " Out of Stock"}
                     </TableCell>
                     <TableCell align="right">{beer.brand}</TableCell>
                     <TableCell align="right">{beer.flavor}</TableCell>
                     <TableCell align="right">{beer.alcoholContent}</TableCell>
-                    <TableCell align="right">{beer.price}</TableCell>
+                    {beer.price > 12 ? (
+                      <TableCell align="right">
+                        <Typography className={classes.orange}>
+                          {beer.price}
+                        </Typography>
+                      </TableCell>
+                    ) : beer.price > 8 ? (
+                      <TableCell align="right">
+                        <Typography className={classes.orange}>
+                          {beer.price}
+                        </Typography>
+                      </TableCell>
+                    ) : (
+                      <TableCell align="right">
+                        <Typography className={classes.orange}>
+                          {beer.price}
+                        </Typography>
+                      </TableCell>
+                    )}
+
                     <TableCell align="right">{beer.pints}</TableCell>
                     {beer.pints > 0 ? (
                       <TableCell

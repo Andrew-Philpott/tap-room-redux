@@ -2,9 +2,16 @@ import React from "react";
 import { v4 } from "uuid";
 import BeerList from "./BeerList";
 import NewBeerForum from "./NewBeerForum";
-import { Button } from "@material-ui/core";
+import { Button, Container, Grid } from "@material-ui/core";
 import BeerDetail from "./BeerDetail";
 import EditBeerForum from "./EditBeerForum";
+import { makeStyles } from "@material-ui/core";
+
+const styles = makeStyles({
+  center: {
+    justifyContent: "center",
+  },
+});
 
 const beerList = [
   {
@@ -67,6 +74,7 @@ class BeerControl extends React.Component {
       disableButton: null,
     };
   }
+
   showNewBeerForum = () => {
     this.setState({ formVisibleOnPage: true });
   };
@@ -88,11 +96,8 @@ class BeerControl extends React.Component {
   };
   hideEditBeerForum = () => {
     this.setState({ editing: false });
+    this.setState({ selectedBeer: null });
   };
-
-  handleChange(event) {
-    this.setState({ value: event.target.value });
-  }
 
   handleAddingNewBeerToList = (newBeer) => {
     const newBeerList = this.state.beerList.concat(newBeer);
@@ -137,7 +142,9 @@ class BeerControl extends React.Component {
             onEditBeer={this.handleEditingBeer}
             beer={this.state.selectedBeer}
           ></EditBeerForum>
-          <Button onClick={() => this.hideBeerDetail()}>Return to beers</Button>
+          <Button onClick={() => this.hideEditBeerForum()}>
+            Return to beers
+          </Button>
         </div>
       );
     } else if (this.state.selectedBeer != null) {
@@ -176,10 +183,14 @@ class BeerControl extends React.Component {
       );
     }
     return (
-      <React.Fragment>
-        {currentlyVisibleState}
-        {addBeerButton}
-      </React.Fragment>
+      <Container className={styles.center}>
+        <Grid container>
+          <Grid item xs={12}>
+            {currentlyVisibleState}
+            {addBeerButton}
+          </Grid>
+        </Grid>
+      </Container>
     );
   }
 }
