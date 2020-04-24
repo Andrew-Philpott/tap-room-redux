@@ -43,9 +43,9 @@ const beerList = [
     id: v4(),
     name: "Universale",
     brand: "Fremont",
-    color: "Golden caramel",
-    aroma: "Citrus, apple, biscuit",
-    flavor: "Pine, orange, bready",
+    color: "Something",
+    aroma: "Something",
+    flavor: "Something",
     price: 5,
     alcoholContent: 5.6,
     pints: 124,
@@ -71,20 +71,29 @@ class BeerControl extends React.Component {
     this.setState({ formVisibleOnPage: false });
   };
   showBeerDetail = (id) => {
-    console.log(id);
     const beer = this.state.beerList.filter((entry) => entry.id === id)[0];
-    console.log(beer);
     this.setState({ selectedBeer: beer });
-    console.log(this.state.selectedBeer);
   };
   hideBeerDetail = () => {
     this.setState({ detailVisibleOnPage: false });
+    this.setState({ selectedBeer: null });
   };
 
   handleAddingNewBeerToList = (newBeer) => {
     const newBeerList = this.state.beerList.concat(newBeer);
     this.setState({ beerList: newBeerList });
     this.setState({ formVisibleOnPage: false });
+  };
+
+  handleIncrementingBeerPints = (id) => {
+    let newBeerList = this.state.beerList.map((entry) => entry);
+    newBeerList.find((entry) => entry.id === id).pints += 12;
+    this.setState({ beerList: newBeerList });
+  };
+  handleDecrementingBeerPints = (id) => {
+    let newBeerList = this.state.beerList.map((entry) => entry);
+    newBeerList.find((entry) => entry.id === id).pints -= 12;
+    this.setState({ beerList: newBeerList });
   };
 
   render() {
@@ -94,7 +103,7 @@ class BeerControl extends React.Component {
       currentlyVisibleState = (
         <div>
           <BeerDetail beer={this.state.selectedBeer}></BeerDetail>
-          <Button onClick={() => this.hideBeerDetail}>Return to beers</Button>
+          <Button onClick={() => this.hideBeerDetail()}>Return to beers</Button>
         </div>
       );
     } else if (this.state.formVisibleOnPage) {
@@ -112,6 +121,8 @@ class BeerControl extends React.Component {
       currentlyVisibleState = (
         <div>
           <BeerList
+            onBeerPintIncrement={this.handleIncrementingBeerPints}
+            onBeerPintDecrement={this.handleDecrementingBeerPints}
             onShowBeerDetail={this.showBeerDetail}
             beerList={this.state.beerList}
           />
