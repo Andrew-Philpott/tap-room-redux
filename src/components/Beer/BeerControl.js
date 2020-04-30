@@ -5,7 +5,8 @@ import NewBeerForum from "./NewBeerForum";
 import { Button, Container, Grid } from "@material-ui/core";
 import BeerDetail from "./BeerDetail";
 import EditBeerForum from "./EditBeerForum";
-import { makeStyles } from "@material-ui/core";
+import { makeStyles, CardMedia } from "@material-ui/core";
+import beer from "../assets/img/beer.jpg";
 
 const styles = makeStyles({
   center: {
@@ -176,8 +177,11 @@ class BeerControl extends React.Component {
             onShowEditBeer={this.showEditBeerForum}
             beerList={this.state.beerList}
           />
-          <Button onClick={() => this.showNewBeerForum()}>
-            Create a new beer
+          <Button
+            style={{ backgroundColor: "white" }}
+            onClick={() => this.showNewBeerForum()}
+          >
+            Add beer
           </Button>
         </div>
       );
@@ -186,6 +190,7 @@ class BeerControl extends React.Component {
       <Container className={styles.center}>
         <Grid container>
           <Grid item xs={12}>
+            <CardMedia style={{ height: 500 }} image={beer}></CardMedia>
             {currentlyVisibleState}
             {addBeerButton}
           </Grid>

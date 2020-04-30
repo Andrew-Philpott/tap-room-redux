@@ -1,13 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
-import {
-  Typography,
-  ListItem,
-  List,
-  Container,
-  Grid,
-  makeStyles,
-} from "@material-ui/core";
+import { Typography, Container, Grid, makeStyles } from "@material-ui/core";
 
 const styles = makeStyles((theme) => ({
   root: {

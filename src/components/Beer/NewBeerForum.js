@@ -9,6 +9,9 @@ const useStyles = makeStyles({
     display: "flex",
     flexDirection: "column",
   },
+  grid: {
+    backgroundColor: "white",
+  },
 });
 
 export default function NewBeerForum(props) {
@@ -29,7 +32,7 @@ export default function NewBeerForum(props) {
   }
   return (
     <form onSubmit={handleNewBeerFormSubmission}>
-      <Grid container>
+      <Grid className={classes.grid} container>
         <Grid item xs={12}>
           <FormControl variant="outlined">
             <InputLabel htmlFor="name">Name</InputLabel>
