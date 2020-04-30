@@ -33,19 +33,19 @@ export const Header = () => {
         <Grid item xs={9}>
           <Toolbar>
             <Grid item xs={2}>
-              <Link className={classes.navLinks} to="/ontap">
+              {/* <Link className={classes.navLinks} to="/ontap">
                 On Tap
-              </Link>
+              </Link> */}
             </Grid>
             <Grid item xs={2}>
-              <Link className={classes.navLinks} to="/about">
+              {/* <Link className={classes.navLinks} to="/about">
                 About
-              </Link>
+              </Link> */}
             </Grid>
             <Grid item xs={2}>
-              <Link className={classes.navLinks} to="/community">
+              {/* <Link className={classes.navLinks} to="/community">
                 Community
-              </Link>
+              </Link> */}
             </Grid>
           </Toolbar>
         </Grid>

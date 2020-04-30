@@ -1,10 +1,10 @@
 import React from "react";
 import { v4 } from "uuid";
-import BeerList from "./BeerList";
-import NewBeerForum from "./NewBeerForm";
-import { Button } from "@material-ui/core";
-import BeerDetail from "./BeerDetail";
-import EditBeerForum from "./EditBeerForum";
+import { NewBeerForm } from "./NewBeerForm";
+import { Button, Container, Grid } from "@material-ui/core";
+import { BeerDetail } from "./BeerDetail";
+import { BeerList } from "./BeerList";
+import { EditBeerForm } from "./EditBeerForm";
 
 const beerList = [
   {
@@ -90,7 +90,80 @@ class BeerControl extends React.Component {
       editFormVisibleOnPage: false,
       detailVisibleOnPage: false,
       selectedBeer: null,
-      beerList: beerList,
+      beerList: [
+        {
+          id: v4(),
+          name: "Universale",
+          brand: "Fremont",
+          color: "Golden caramel",
+          aroma: "Citrus, apple, biscuit",
+          flavor: "Pine, orange, bready",
+          price: 5,
+          alcoholContent: 5.6,
+          pints: 124,
+          reviews: [
+            {
+              rating: 5,
+              comments: "Amazing, the best. Buy it and you won't regret it.",
+            },
+            { rating: 3, comments: "I've had better." },
+          ],
+        },
+        {
+          id: v4(),
+          name: "Interurban",
+          brand: "Fremont",
+          color: "Yellow amber",
+          aroma: "Orange, dank, juicy",
+          flavor: "Grapefruit, pine, honey",
+          price: 5,
+          alcoholContent: 6.2,
+          pints: 124,
+          reviews: [
+            {
+              rating: 5,
+              comments: "Amazing, the best. Buy it and you won't regret it.",
+            },
+            { rating: 3, comments: "I've had better." },
+          ],
+        },
+        {
+          id: v4(),
+          name: "Universale",
+          brand: "Fremont",
+          color: "Golden caramel",
+          aroma: "Citrus, apple, biscuit",
+          flavor: "Pine, orange, bready",
+          price: 5,
+          alcoholContent: 5.6,
+          pints: 124,
+          reviews: [
+            {
+              rating: 5,
+              comments: "Amazing, the best. Buy it and you won't regret it.",
+            },
+            { rating: 3, comments: "I've had better." },
+          ],
+        },
+        {
+          id: v4(),
+          name: "Universale",
+          brand: "Fremont",
+          color: "Something",
+          aroma: "Something",
+          flavor: "Something",
+          price: 5,
+          alcoholContent: 5.6,
+          pints: 1,
+          reviews: [
+            {
+              rating: 5,
+              comments: "Amazing, the best. Buy it and you won't regret it.",
+            },
+            { rating: 3, comments: "I've had better." },
+          ],
+        },
+      ],
       disableButton: null,
     };
   }
@@ -114,7 +187,7 @@ class BeerControl extends React.Component {
     this.setState({ selectedBeer: beer });
     this.setState({ editing: true });
   };
-  hideEditBeerForm = () => {
+  hideEditBeerForum = () => {
     this.setState({ editing: false });
     this.setState({ selectedBeer: null });
   };
@@ -154,13 +227,14 @@ class BeerControl extends React.Component {
 
   render() {
     let currentlyVisibleState = null;
+    let addBeerButton = null;
     if (this.state.editing) {
       currentlyVisibleState = (
         <>
-          <EditBeerForum
+          <EditBeerForm
             onEditBeer={this.handleEditingBeer}
             beer={this.state.selectedBeer}
-          ></EditBeerForum>
+          ></EditBeerForm>
           <Button onClick={() => this.hideEditBeerForum()}>
             Return to beers
           </Button>
@@ -170,17 +244,24 @@ class BeerControl extends React.Component {
       currentlyVisibleState = (
         <>
           <BeerDetail beer={this.state.selectedBeer}></BeerDetail>
-          <Button onClick={() => this.hideBeerDetail()}>Return to beers</Button>
+          <Button
+            style={{ backgroundColor: "white" }}
+            onClick={() => this.hideBeerDetail()}
+          >
+            Return to beers
+          </Button>
         </>
       );
     } else if (this.state.formVisibleOnPage) {
       currentlyVisibleState = (
         <>
-          <NewBeerForum
+          <NewBeerForm
             onNewBeerCreation={this.handleAddingNewBeerToList}
-            onHideNewBeerForm={this.hide}
-          ></NewBeerForum>
-          <Button onClick={() => this.hideNewBeerForum()}>
+          ></NewBeerForm>
+          <Button
+            style={{ backgroundColor: "white" }}
+            onClick={() => this.hideNewBeerForum()}
+          >
             Return to beers
           </Button>
         </>

@@ -15,7 +15,7 @@ const useStyles = makeStyles({
   },
 });
 
-export default function NewBeerForm(props) {
+export const NewBeerForm = (props) => {
   const isBackgroundBlack = false;
   const classes = useStyles();
   function handleNewBeerFormSubmission(event) {
@@ -104,7 +104,7 @@ export default function NewBeerForm(props) {
       </div>
     </React.Fragment>
   );
-}
+};
 
 NewBeerForm.propTypes = {
   onNewBeerCreation: PropTypes.func,

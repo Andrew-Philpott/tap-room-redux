@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 import { Input, Button, makeStyles, Grid } from "@material-ui/core";
 import { FormControl, InputLabel } from "@material-ui/core";
 
-export default function EditBeerForm(props) {
+export const EditBeerForm = (props) => {
   const { beer, onEditBeer } = props;
   const isBackgroundBlack = false;
   function handleEditBeerFormSubmission(event) {
@@ -78,7 +78,7 @@ export default function EditBeerForm(props) {
       </div>
     </React.Fragment>
   );
-}
+};
 
 EditBeerForm.propTypes = {
   onEditBeer: PropTypes.func,

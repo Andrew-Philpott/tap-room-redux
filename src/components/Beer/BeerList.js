@@ -7,6 +7,7 @@ import TableContainer from "@material-ui/core/TableContainer";
 import TableHead from "@material-ui/core/TableHead";
 import TableRow from "@material-ui/core/TableRow";
 import { Grid, Container, Button } from "@material-ui/core";
+import { Link } from "react-router-dom";
 import { makeStyles } from "@material-ui/core";
 import EditIcon from "@material-ui/icons/Edit";
 
@@ -32,7 +33,8 @@ const useStyles = makeStyles({
   },
 });
 
-function BeerList(props) {
+export const BeerList = (props) => {
+  const { beerList } = props;
   const isBackgroundBlack = true;
   const classes = useStyles();
   return (
@@ -99,115 +101,122 @@ function BeerList(props) {
                   </TableRow>
                 </TableHead>
                 <TableBody>
-                  {props.beerList.map((beer) => (
-                    <TableRow key={beer.id}>
-                      <TableCell className={classes.tableCell}>
-                        <span
-                          onClick={() => props.onShowBeerDetail(beer.id)}
-                          className={classes.actionLinkStyle}
-                        >
-                          {beer.name}
-                          {beer.pints > 10 ? (
-                            ""
-                          ) : beer.pints > 0 ? (
-                            <>
-                              <br />
-                              <i style={{ color: "yellow" }}>Almost Empty</i>
-                            </>
-                          ) : (
-                            <>
-                              <br />
-                              <i style={{ color: "red" }}>Out of stock</i>
-                            </>
-                          )}
-                        </span>
-                      </TableCell>
-                      <TableCell className={classes.tableCell} align="left">
-                        {beer.brand}
-                      </TableCell>
-                      <TableCell className={classes.tableCell} align="left">
-                        {beer.flavor}
-                      </TableCell>
-                      <TableCell className={classes.tableCell} align="left">
-                        {beer.alcoholContent}
-                      </TableCell>
-                      {beer.price > 12 ? (
-                        <TableCell
-                          style={{ color: "orange", borderBottom: "none" }}
-                          align="left"
-                        >
-                          {beer.price}
-                        </TableCell>
-                      ) : beer.price > 8 ? (
-                        <TableCell
-                          style={{ color: "yellow", borderBottom: "none" }}
-                          align="left"
-                        >
-                          {beer.price}
-                        </TableCell>
-                      ) : (
-                        <TableCell
-                          style={{ color: "green", borderBottom: "none" }}
-                          align="left"
-                        >
-                          {beer.price}
-                        </TableCell>
-                      )}
-                      <TableCell className={classes.tableCell} align="left">
-                        {beer.pints}
-                      </TableCell>
-                      {beer.pints > 0 ? (
-                        <TableCell className={classes.tableCell} align="center">
+                  {beerList &&
+                    beerList.map((beer) => (
+                      <TableRow key={beer.id}>
+                        <TableCell className={classes.tableCell}>
                           <span
-                            style={{ fontSize: "1.8em" }}
-                            onClick={() => props.onBeerPintDecrement(beer.id)}
+                            onClick={() => props.onShowBeerDetail(beer.id)}
                             className={classes.actionLinkStyle}
                           >
-                            -
+                            {beer.name}
+                            {beer.pints > 10 ? (
+                              ""
+                            ) : beer.pints > 0 ? (
+                              <>
+                                <br />
+                                <i style={{ color: "yellow" }}>Almost Empty</i>
+                              </>
+                            ) : (
+                              <>
+                                <br />
+                                <i style={{ color: "red" }}>Out of stock</i>
+                              </>
+                            )}
                           </span>
                         </TableCell>
-                      ) : (
-                        <TableCell className={classes.tableCell} align="center">
-                          <span
-                            style={{ fontSize: "1.8em" }}
-                            className={classes.actionLinkStyle}
+                        <TableCell className={classes.tableCell} align="left">
+                          {beer.brand}
+                        </TableCell>
+                        <TableCell className={classes.tableCell} align="left">
+                          {beer.flavor}
+                        </TableCell>
+                        <TableCell className={classes.tableCell} align="left">
+                          {beer.alcoholContent}
+                        </TableCell>
+                        {beer.price > 12 ? (
+                          <TableCell
+                            style={{ color: "orange", borderBottom: "none" }}
+                            align="left"
                           >
-                            -
-                          </span>
+                            {beer.price}
+                          </TableCell>
+                        ) : beer.price > 8 ? (
+                          <TableCell
+                            style={{ color: "yellow", borderBottom: "none" }}
+                            align="left"
+                          >
+                            {beer.price}
+                          </TableCell>
+                        ) : (
+                          <TableCell
+                            style={{ color: "green", borderBottom: "none" }}
+                            align="left"
+                          >
+                            {beer.price}
+                          </TableCell>
+                        )}
+                        <TableCell className={classes.tableCell} align="left">
+                          {beer.pints}
                         </TableCell>
-                      )}
+                        {beer.pints > 0 ? (
+                          <TableCell
+                            className={classes.tableCell}
+                            align="center"
+                          >
+                            <span
+                              style={{ fontSize: "1.8em" }}
+                              onClick={() => props.onBeerPintDecrement(beer.id)}
+                              className={classes.actionLinkStyle}
+                            >
+                              -
+                            </span>
+                          </TableCell>
+                        ) : (
+                          <TableCell
+                            className={classes.tableCell}
+                            align="center"
+                          >
+                            <span
+                              style={{ fontSize: "1.8em" }}
+                              className={classes.actionLinkStyle}
+                            >
+                              -
+                            </span>
+                          </TableCell>
+                        )}
 
-                      <TableCell className={classes.tableCell} align="center">
-                        <span
-                          className={classes.actionLinkStyle}
-                          onClick={() => props.onBeerPintIncrement(beer.id)}
-                        >
-                          +
-                        </span>
-                      </TableCell>
-                      <TableCell className={classes.tableCell} align="center">
-                        <EditIcon
+                        <TableCell className={classes.tableCell} align="center">
+                          <span
+                            className={classes.actionLinkStyle}
+                            onClick={() => props.onBeerPintIncrement(beer.id)}
+                          >
+                            +
+                          </span>
+                        </TableCell>
+                        <TableCell className={classes.tableCell} align="center">
+                          <EditIcon
+                            style={{
+                              cursor: "pointer",
+                            }}
+                            onClick={() => props.onShowEditBeer(beer.id)}
+                          ></EditIcon>
+                        </TableCell>
+                        <TableCell
                           style={{
-                            cursor: "pointer",
+                            borderBottom: "none",
                           }}
-                          onClick={() => props.onShowEditBeer(beer.id)}
-                        ></EditIcon>
-                      </TableCell>
-                      <TableCell
-                        style={{
-                          borderBottom: "none",
-                        }}
-                        align="center"
-                      >
-                        <span
-                          className={classes.actionLinkStyle}
-                          onClick={() => props.onRemoveBeer(beer.id)}
+                          align="center"
                         >
-                          X
-                        </span>
-                      </TableCell>
-                    </TableRow>
-                  ))}
+                          <span
+                            className={classes.actionLinkStyle}
+                            onClick={() => props.onRemoveBeer(beer.id)}
+                          >
+                            X
+                          </span>
+                        </TableCell>
+                      </TableRow>
+                    ))}
                 </TableBody>
               </Table>
             </TableContainer>
@@ -216,7 +225,7 @@ function BeerList(props) {
       </Container>
     </div>
   );
-}
+};
 
 BeerList.propTypes = {
   beerList: PropTypes.array,

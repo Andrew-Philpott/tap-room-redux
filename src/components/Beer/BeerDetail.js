@@ -1,8 +1,8 @@
 import React from "react";
 import PropTypes from "prop-types";
-import { Typography, Container, Grid, makeStyles } from "@material-ui/core";
+import { Container, Grid } from "@material-ui/core";
 
-function BeerDetail(props) {
+export const BeerDetail = (props) => {
   const { beer } = props;
   const isBackgroundBlack = false;
   return (
@@ -15,35 +15,39 @@ function BeerDetail(props) {
           alignContent: "left",
         }}
       >
-        <h1>Beer details</h1>
         <Container>
+          <h1>{beer.name}</h1>
           <Grid container>
-            <Grid item xs={8}>
-              <p>Name: {beer.name}</p>
+            <Grid item xs={4}>
               <p>Brand: {beer.brand}</p>
               <p>Color: {beer.color}</p>
               <p>Aroma: {beer.aroma}</p>
               <p>Flavor: {beer.flavor}</p>
+            </Grid>
+            <Grid item xs={4}>
               <p>Alcohol Content: {beer.alcoholContent}</p>
               <p>Price: ${beer.price}</p>
               <p>Pints Left: {beer.pints}</p>
             </Grid>
-            <Grid item xs={4}>
-              {beer.reviews.map((review) => {
-                return (
-                  <>
-                    <p>{review.rating}</p>
-                    <p>{review.rating}</p>
-                  </>
-                );
-              })}
-            </Grid>
+          </Grid>
+        </Container>
+        <Container>
+          <Grid item xs={12}>
+            <h2>Reviews</h2>
+            {beer.reviews.map((review) => {
+              return (
+                <>
+                  <p>{review.rating}</p>
+                  <p>{review.rating}</p>
+                </>
+              );
+            })}
           </Grid>
         </Container>
       </div>
     </React.Fragment>
   );
-}
+};
 
 BeerDetail.propTypes = {
   beer: PropTypes.object,
