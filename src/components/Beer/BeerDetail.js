@@ -2,26 +2,23 @@ import React from "react";
 import PropTypes from "prop-types";
 import { Typography, Container, Grid, makeStyles } from "@material-ui/core";
 
-const styles = makeStyles((theme) => ({
-  root: {
-    flexGrow: 1,
-  },
-  paper: {
-    padding: theme.spacing(2),
-    textAlign: "center",
-    color: theme.palette.text.secondary,
-  },
-}));
-
 function BeerDetail(props) {
   const { beer } = props;
+  const isBackgroundBlack = false;
   return (
     <React.Fragment>
-      <h1>Beer details</h1>
-      <Container>
-        <Grid container component={styles.paper}>
-          <Grid item xs={12}>
-            <Typography variant="h6">
+      <div
+        style={{
+          width: "100%",
+          marginTop: "25%",
+          backgroundColor: isBackgroundBlack ? "black" : "white",
+          alignContent: "left",
+        }}
+      >
+        <h1>Beer details</h1>
+        <Container>
+          <Grid container>
+            <Grid item xs={8}>
               <p>Name: {beer.name}</p>
               <p>Brand: {beer.brand}</p>
               <p>Color: {beer.color}</p>
@@ -30,10 +27,20 @@ function BeerDetail(props) {
               <p>Alcohol Content: {beer.alcoholContent}</p>
               <p>Price: ${beer.price}</p>
               <p>Pints Left: {beer.pints}</p>
-            </Typography>
+            </Grid>
+            <Grid item xs={4}>
+              {beer.reviews.map((review) => {
+                return (
+                  <>
+                    <p>{review.rating}</p>
+                    <p>{review.rating}</p>
+                  </>
+                );
+              })}
+            </Grid>
           </Grid>
-        </Grid>
-      </Container>
+        </Container>
+      </div>
     </React.Fragment>
   );
 }
