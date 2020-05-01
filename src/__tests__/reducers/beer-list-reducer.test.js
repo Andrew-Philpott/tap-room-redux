@@ -1,5 +1,4 @@
 import beerListReducer from "../../reducers/beer-list-reducer.js";
-import * as a from "../../actions";
 import * as c from "../../actions/ActionTypes";
 
 describe("beerListReducer", () => {

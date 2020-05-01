@@ -1,3 +1,8 @@
 export default (state = {}, action) => {
-  return state;
+  switch (action.type) {
+    case "DESELECT_BEER":
+      return action.payload;
+    default:
+      return state;
+  }
 };
