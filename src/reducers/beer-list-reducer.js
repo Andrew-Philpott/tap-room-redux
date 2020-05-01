@@ -19,13 +19,13 @@ export default (state = {}, action) => {
     case a.INCREASE_BEER_PINT_QUANTITY:
       newState = { ...state };
       beer = newState[action.payload];
-      beer.pints += 1;
+      beer["pints"] += 1;
       newState[action.payload] = beer;
       return newState;
     case a.DECREASE_BEER_PINT_QUANTITY:
       newState = { ...state };
       beer = newState[action.payload];
-      beer.pints -= 1;
+      beer["pints"] -= 1;
       return newState;
   }
   return state;

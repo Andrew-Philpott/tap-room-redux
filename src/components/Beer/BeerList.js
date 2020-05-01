@@ -109,8 +109,8 @@ export const BeerList = (props) => {
                   </TableRow>
                 </TableHead>
                 <TableBody>
-                  {beerList !== null &&
-                    Object.keys(beerList).map((beer) => (
+                  {Object.values(beerList).map((beer) => {
+                    return (
                       <TableRow key={beer.id}>
                         <TableCell className={classes.tableCell}>
                           <span
@@ -224,7 +224,8 @@ export const BeerList = (props) => {
                           </span>
                         </TableCell>
                       </TableRow>
-                    ))}
+                    );
+                  })}
                 </TableBody>
               </Table>
             </TableContainer>
@@ -236,7 +237,7 @@ export const BeerList = (props) => {
 };
 
 BeerList.propTypes = {
-  beerList: PropTypes.array,
+  beerList: PropTypes.object,
   onDisplayBeerDetail: PropTypes.func,
   onDisplayNewBeerForm: PropTypes.func,
   onDisplayEditBeerForm: PropTypes.func,
