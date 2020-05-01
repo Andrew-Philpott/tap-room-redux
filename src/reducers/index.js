@@ -1,12 +1,12 @@
 import { combineReducers } from "redux";
 import beerListReducer from "./beer-list-reducer";
-import newBeerFormVisibleReducer from "./new-beer-form-visible-reducer";
-import editBeerFormVisibleReducer from "./edit-beer-form-visible-reducer";
+import newBeerFormVisibilityReducer from "./new-beer-form-visibility-reducer";
+import editBeerFormVisibilityReducer from "./edit-beer-form-visibility-reducer";
 
 const rootReducer = combineReducers({
   beerList: beerListReducer,
-  newBeerFormVisible: newBeerFormVisibleReducer,
-  editBeerFormVisible: editBeerFormVisibleReducer,
+  newBeerFormVisibility: newBeerFormVisibilityReducer,
+  editBeerFormVisibility: editBeerFormVisibilityReducer,
 });
 
 export default rootReducer;
