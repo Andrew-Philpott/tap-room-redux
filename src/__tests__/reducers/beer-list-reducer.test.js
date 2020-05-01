@@ -17,6 +17,19 @@ describe("beerListReducer", () => {
     reviews: [],
   };
 
+  const updatedBeer = {
+    id: 1,
+    name: "Universale",
+    brand: "Fremont2.0",
+    color: "Pink",
+    aroma: "Citrus, apple, biscuit",
+    flavor: "Pine, orange, bready",
+    price: 8,
+    alcoholContent: 5.6,
+    pints: 80,
+    reviews: [{ rating: "5", description: "Great stuff" }],
+  };
+
   test("Should return default state if there is no action type passed into the reducer", () => {
     expect(beerListReducer([], { type: null })).toEqual([]);
   });
@@ -37,5 +50,14 @@ describe("beerListReducer", () => {
     };
 
     expect(beerListReducer([beer], action)).toEqual([]);
+  });
+
+  test("Should successfully update a beer in the beer list", () => {
+    action = {
+      type: c.UPDATE_BEER,
+      payload: updatedBeer,
+    };
+
+    expect(beerListReducer([beer], action)).toEqual([updatedBeer]);
   });
 });
