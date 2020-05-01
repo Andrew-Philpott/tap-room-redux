@@ -40,4 +40,11 @@ describe("beer list actions", () => {
       payload: 1,
     });
   });
+
+  it("decreaseBeerPintQuantity correctly creates a DECREASE_BEER_PINT_QUANTITY action", () => {
+    expect(a.decreaseBeerPintQuantity(1)).toEqual({
+      type: c.DECREASE_BEER_PINT_QUANTITY,
+      payload: 1,
+    });
+  });
 });
