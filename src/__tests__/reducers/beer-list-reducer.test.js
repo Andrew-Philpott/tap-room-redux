@@ -27,10 +27,6 @@ describe("beerListReducer", () => {
       payload: beer,
     };
 
-    expect(beerListReducer([], action)).toEqual([
-      {
-        beer,
-      },
-    ]);
+    expect(beerListReducer([], action)).toEqual([beer]);
   });
 });
