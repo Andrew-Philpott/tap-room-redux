@@ -15,4 +15,10 @@ describe("beer list actions", () => {
   it("updateBeer correctly creates a UPDATE_BEER action", () => {
     expect(a.updateBeer(1)).toEqual({ type: c.UPDATE_BEER, payload: 1 });
   });
+
+  it("toggleEditBeerFormVisibility correctly creates a TOGGLE_EDIT_BEER_FORM_VISIBILITY action", () => {
+    expect(a.toggleEditBeerFormVisibility()).toEqual({
+      type: c.TOGGLE_EDIT_BEER_FORM_VISIBILITY,
+    });
+  });
 });
