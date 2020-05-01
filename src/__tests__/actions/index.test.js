@@ -33,4 +33,11 @@ describe("beer list actions", () => {
       type: c.TOGGLE_NEW_BEER_FORM_VISIBILITY,
     });
   });
+
+  it("increaseBeerPintQuantity correctly creates a INCREASE_BEER_PINT_QUANTITY action", () => {
+    expect(a.increaseBeerPintQuantity(1)).toEqual({
+      type: c.INCREASE_BEER_PINT_QUANTITY,
+      payload: 1,
+    });
+  });
 });
