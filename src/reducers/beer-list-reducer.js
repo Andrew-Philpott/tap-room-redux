@@ -15,6 +15,12 @@ export default (state = {}, action) => {
       newState = { ...state };
       newState[action.payload.id] = action.payload;
       return newState;
+    case a.INCREASE_BEER_PINT_QUANTITY:
+      newState = { ...state };
+      let beer = newState[action.payload];
+      beer.pints += 1;
+      newState[action.payload] = beer;
+      return newState;
   }
   return state;
 };
