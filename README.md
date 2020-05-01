@@ -6,7 +6,7 @@
 
 #### By **Andrew Philpott**
 
-[About](#About) | [Prompt](#Prompt) | [User Stories](#User-Stories) | [React Component Diagram](#React-Component-Diagram) | [Bugs](#Known-Bugs) | [Technologies](#Technologies-Used) | [Contact](#Support-and-Contact-Details)
+[About](#About) | [Prompt](#Prompt) | [User Stories](#User-Stories) | [React Component Diagrams](#React-Component-Diagrams) | [Bugs](#Known-Bugs) | [Technologies](#Technologies-Used) | [Contact](#Support-and-Contact-Details)
 
 </div>
 
@@ -65,9 +65,11 @@ _\$npm install to download dependencies_
 _\$npm run start to run the application_
 _Application will run on localhost:3000_
 
-## React Component Diagram
+## React Component Diagrams
 
 <img style="width:600px" src="./public/TapRoomRedux.png">
+
+<img style="width:600px" src="./public/TapRoomReduxWireFrame.png>
 
 ## Known Bugs
 
