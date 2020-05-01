@@ -1,27 +1,26 @@
 import React from "react";
 import PropTypes from "prop-types";
-import { Input, Button, makeStyles, Grid } from "@material-ui/core";
+import { Input, Button, Grid } from "@material-ui/core";
 import { FormControl, InputLabel } from "@material-ui/core";
 
 export const EditBeerForm = (props) => {
-  // const {
-  //   brand,
-  //   color,
-  //   aroma,
-  //   flavor,
-  //   alcoholContent,
-  //   reviews,
-  //   price,
-  //   name,
-  //   pints,
-  //   id,
-  // } = props.beer;
-  const { beer, onEditBeerFormSubmission } = props;
+  const {
+    brand,
+    color,
+    aroma,
+    flavor,
+    alcoholContent,
+    price,
+    name,
+    pints,
+    id,
+  } = props.beer;
+  const { onEditBeerFormSubmission } = props.onEditBeerFormSubmission;
   const isBackgroundBlack = false;
   function handleEditBeerFormSubmission(event) {
     event.preventDefault();
     onEditBeerFormSubmission({
-      id: beer.id,
+      id: id,
       name: event.target.name.value,
       brand: event.target.brand.value,
       color: event.target.color.value,
@@ -44,12 +43,11 @@ export const EditBeerForm = (props) => {
         }}
       >
         <form onSubmit={handleEditBeerFormSubmission}>
-          {/* <Input id="id" type="hidden" value={beer.id} name="id" /> */}
           <Grid container>
             <Grid item xs={12}>
               <InputLabel htmlFor="name">Name</InputLabel>
               <Input
-                defaultValue={beer.name}
+                defaultValue={name}
                 id="name"
                 type="text"
                 name="name"
@@ -59,7 +57,7 @@ export const EditBeerForm = (props) => {
             <Grid item xs={12}>
               <InputLabel htmlFor="brand">Brand</InputLabel>
               <Input
-                defaultValue={beer.brand}
+                defaultValue={brand}
                 id="brand"
                 type="text"
                 name="brand"
@@ -69,7 +67,7 @@ export const EditBeerForm = (props) => {
             <Grid item xs={12}>
               <InputLabel htmlFor="color">Color</InputLabel>
               <Input
-                defaultValue={beer.color}
+                defaultValue={color}
                 id="color"
                 type="text"
                 name="color"
@@ -79,7 +77,7 @@ export const EditBeerForm = (props) => {
             <Grid item xs={12}>
               <InputLabel htmlFor="aroma">Aroma</InputLabel>
               <Input
-                defaultValue={beer.aroma}
+                defaultValue={aroma}
                 id="aroma"
                 type="text"
                 name="aroma"
@@ -89,7 +87,7 @@ export const EditBeerForm = (props) => {
             <Grid item xs={12}>
               <InputLabel htmlFor="flavor">Flavor</InputLabel>
               <Input
-                defaultValue={beer.flavor}
+                defaultValue={flavor}
                 id="flavor"
                 type="text"
                 name="flavor"
@@ -99,7 +97,7 @@ export const EditBeerForm = (props) => {
             <Grid item xs={12}>
               <InputLabel htmlFor="price">Price</InputLabel>
               <Input
-                defaultValue={beer.price}
+                defaultValue={price}
                 id="price"
                 type="text"
                 name="price"
@@ -109,7 +107,7 @@ export const EditBeerForm = (props) => {
             <Grid item xs={12}>
               <InputLabel htmlFor="alcoholContent">AlcoholContent</InputLabel>
               <Input
-                defaultValue={beer.alcoholContent}
+                defaultValue={alcoholContent}
                 id="alcoholContent"
                 type="text"
                 name="alcoholContent"
@@ -119,7 +117,7 @@ export const EditBeerForm = (props) => {
             <Grid item xs={12}>
               <InputLabel htmlFor="pints">Pints</InputLabel>
               <Input
-                defaultValue={beer.pints}
+                defaultValue={pints}
                 id="pints"
                 type="text"
                 name="pints"
@@ -138,13 +136,13 @@ export const EditBeerForm = (props) => {
 EditBeerForm.propTypes = {
   onNewBeerFormSubmission: PropTypes.func,
   beer: PropTypes.object,
-  // name: PropTypes.string,
-  // price: PropTypes.number,
-  // alcoholContent: PropTypes.number,
-  // aroma: PropTypes.string,
-  // color: PropTypes.string,
-  // pints: PropTypes.number,
-  // flavor: PropTypes.string,
-  // brand: PropTypes.string,
-  // reviews: PropTypes.object,
+  name: PropTypes.string,
+  price: PropTypes.number,
+  alcoholContent: PropTypes.number,
+  aroma: PropTypes.string,
+  color: PropTypes.string,
+  pints: PropTypes.number,
+  flavor: PropTypes.string,
+  brand: PropTypes.string,
+  reviews: PropTypes.object,
 };

@@ -26,7 +26,7 @@ export const BeerDetail = (props) => {
           alignContent: "left",
         }}
       >
-        <Container>
+        <Container key={id}>
           <h1>{name}</h1>
           <Grid container>
             <Grid item xs={4}>
@@ -44,15 +44,17 @@ export const BeerDetail = (props) => {
         </Container>
         <Container>
           <Grid item xs={12}>
-            {/* <h2>Reviews</h2> */}
-            {/* {Object.values(reviews).map((review) => {
-              return (
-                <>
-                  <p>{review.rating}</p>
-                  <p>{review.rating}</p>
-                </>
-              );
-            })} */}
+            <h2>Reviews</h2>
+            {reviews &&
+              Object.values(reviews).map((review) => {
+                let { rating, description } = review;
+                return (
+                  <>
+                    <p>{rating}</p>
+                    <p>{description}</p>
+                  </>
+                );
+              })}
           </Grid>
         </Container>
       </div>
@@ -62,6 +64,7 @@ export const BeerDetail = (props) => {
 
 BeerDetail.propTypes = {
   beer: PropTypes.object,
+  id: PropTypes.string,
   name: PropTypes.string,
   price: PropTypes.number,
   alcoholContent: PropTypes.number,
@@ -71,6 +74,8 @@ BeerDetail.propTypes = {
   flavor: PropTypes.string,
   brand: PropTypes.string,
   reviews: PropTypes.object,
+  rating: PropTypes.number,
+  description: PropTypes.string,
 };
 
 export default BeerDetail;

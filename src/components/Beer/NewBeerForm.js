@@ -1,23 +1,11 @@
 import { v4 } from "uuid";
 import React from "react";
 import PropTypes from "prop-types";
-import { Input, Button, makeStyles, Grid } from "@material-ui/core";
+import { Input, Button, Grid } from "@material-ui/core";
 import { FormControl, InputLabel } from "@material-ui/core";
-
-const useStyles = makeStyles({
-  forum: {
-    display: "flex",
-    flexDirection: "column",
-  },
-  grid: {
-    backgroundColor: "black",
-    textcolor: "white",
-  },
-});
 
 export const NewBeerForm = (props) => {
   const isBackgroundBlack = false;
-  const classes = useStyles();
   function handleNewBeerFormSubmission(event) {
     event.preventDefault();
     props.onNewBeerFormSubmission({

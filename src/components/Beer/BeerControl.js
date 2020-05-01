@@ -1,5 +1,4 @@
 import React from "react";
-import { v4 } from "uuid";
 import { NewBeerForm } from "./NewBeerForm";
 import { Button } from "@material-ui/core";
 import { BeerDetail } from "./BeerDetail";
@@ -9,10 +8,6 @@ import { connect } from "react-redux";
 import * as a from "../../actions";
 
 class BeerControl extends React.Component {
-  constructor(props) {
-    super(props);
-  }
-
   handleNewBeerFormSubmission = (newBeer) => {
     const { dispatch } = this.props;
     dispatch(a.newBeer(newBeer));
