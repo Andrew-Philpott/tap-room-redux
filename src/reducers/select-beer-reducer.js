@@ -1,7 +1,11 @@
+import * as a from "../actions/ActionTypes";
+
 export default (state = {}, action) => {
   switch (action.type) {
-    case "SELECT_BEER":
+    case a.SELECT_BEER:
       return action.payload;
+    case a.DESELECT_BEER:
+      return {};
     default:
       return state;
   }
