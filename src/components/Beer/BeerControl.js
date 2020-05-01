@@ -30,8 +30,13 @@ class BeerControl extends React.Component {
     dispatch(a.toggleEditBeerFormVisibility());
   };
 
-  handleEditBeerFormDisplay = () => {
+  handleEditBeerFormDisplay = (id) => {
     const { dispatch } = this.props;
+    if (this.props.selectBeer === null) {
+      dispatch(a.selectBeer(id));
+    } else {
+      dispatch(a.deselectBeer());
+    }
     dispatch(a.toggleEditBeerFormVisibility());
   };
 
