@@ -1,9 +1,24 @@
-export const NEW_BEER = "NEW_BEER";
-export const DELETE_BEER = "DELETE_BEER";
-export const UPDATE_BEER = "UPDATE_BEER";
-export const INCREASE_BEER_PINT_QUANTITY = "INCREASE_BEER_PINT_QUANTITY";
-export const DECREASE_BEER_PINT_QUANTITY = "DECREASE_BEER_PINT_QUANTITY";
-export const TOGGLE_EDIT_BEER_FORM_VISIBILITY =
-  "TOGGLE_EDIT_BEER_FORM_VISIBILITY";
-export const TOGGLE_NEW_BEER_FORM_VISIBILITY =
-  "TOGGLE_NEW_BEER_FORM_VISIBILITY";
+import * as a from "./ActionTypes";
+
+export const newBeer = (beer) => ({
+  type: a.NEW_BEER,
+  payload: beer,
+});
+
+export const deleteBeer = (id) => ({
+  type: a.DELETE_BEER,
+  payload: id,
+});
+
+export const updateBeer = (id) => ({
+  type: a.UPDATE_BEER,
+  payload: id,
+});
+
+export const toggleEditBeerFormVisibility = () => ({
+  type: a.TOGGLE_EDIT_BEER_FORM_VISIBILITY,
+});
+
+export const toggleNewBeerFormVisibility = () => ({
+  type: a.TOGGLE_NEW_BEER_FORM_VISIBILITY,
+});
