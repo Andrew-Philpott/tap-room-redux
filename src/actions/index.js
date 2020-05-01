@@ -10,9 +10,9 @@ export const deleteBeer = (id) => ({
   payload: id,
 });
 
-export const updateBeer = (id) => ({
+export const updateBeer = (beer) => ({
   type: a.UPDATE_BEER,
-  payload: id,
+  payload: beer,
 });
 
 export const toggleEditBeerFormVisibility = () => ({
