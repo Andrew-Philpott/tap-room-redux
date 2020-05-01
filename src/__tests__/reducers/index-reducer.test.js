@@ -25,4 +25,10 @@ describe("rootReducer", () => {
       newBeerFormVisibilityReducer(false, { type: null })
     );
   });
+
+  test("Check that initial state of editBeerFormVisibilityReducer matches root reducer", () => {
+    expect(store.getState().editBeerForm).toEqual(
+      editBeerFormVisibilityReducer(false, { type: null })
+    );
+  });
 });
