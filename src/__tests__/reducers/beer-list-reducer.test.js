@@ -62,4 +62,15 @@ describe("beerListReducer", () => {
       [updatedBeer.id]: updatedBeer,
     });
   });
+
+  test("Should successfully increase the number of pints for a beer", () => {
+    action = {
+      type: c.INCREASE_BEER_PINT_QUANTITY,
+      payload: beer.id,
+    };
+
+    expect(beerListReducer({ [beer.id]: beer }, action)).toEqual({
+      [updatedBeer.id]: updatedBeer,
+    });
+  });
 });
