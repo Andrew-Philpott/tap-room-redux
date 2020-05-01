@@ -13,4 +13,10 @@ describe("rootReducer", () => {
       beerListReducer({}, { type: null })
     );
   });
+
+  test("Check that initial state of selectBeerReducer matches root reducer", () => {
+    expect(store.getState().selectBeer).toEqual(
+      selectBeerReducer({}, { type: null })
+    );
+  });
 });

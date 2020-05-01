@@ -25,7 +25,7 @@ describe("selectBeerReducer", () => {
     ).toEqual(beer);
   });
 
-  test("Should set the selectBeer to null", () => {
+  test("Should set the selectBeer to {}", () => {
     expect(selectBeerReducer({ beer }, { type: c.DESELECT_BEER })).toEqual({});
   });
 });
