@@ -16,16 +16,18 @@ describe("selectBeerReducer", () => {
   };
 
   test("Should return default state if no action type is recognized", () => {
-    expect(selectBeerReducer({}, { type: null })).toEqual({});
+    expect(selectBeerReducer(null, { type: null })).toEqual(null);
   });
 
   test("Should set a beer as the selectBeer", () => {
     expect(
-      selectBeerReducer({}, { type: c.SELECT_BEER, payload: beer })
+      selectBeerReducer(null, { type: c.SELECT_BEER, payload: beer })
     ).toEqual(beer);
   });
 
   test("Should set the selectBeer to {}", () => {
-    expect(selectBeerReducer({ beer }, { type: c.DESELECT_BEER })).toEqual({});
+    expect(selectBeerReducer({ beer }, { type: c.DESELECT_BEER })).toEqual(
+      null
+    );
   });
 });

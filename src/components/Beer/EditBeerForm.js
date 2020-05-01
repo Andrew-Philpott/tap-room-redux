@@ -4,11 +4,11 @@ import { Input, Button, makeStyles, Grid } from "@material-ui/core";
 import { FormControl, InputLabel } from "@material-ui/core";
 
 export const EditBeerForm = (props) => {
-  const { beer, onEditBeer } = props;
+  const { beer, onNewBeerFormSubmission } = props;
   const isBackgroundBlack = false;
   function handleEditBeerFormSubmission(event) {
     event.preventDefault();
-    onEditBeer({
+    onNewBeerFormSubmission({
       id: beer.id,
       name: event.target.name.value,
       brand: event.target.brand.value,
@@ -32,35 +32,72 @@ export const EditBeerForm = (props) => {
         }}
       >
         <form onSubmit={handleEditBeerFormSubmission}>
-          <Input id="id" type="hidden" value={beer.id} name="id" />
+          {/* <Input id="id" type="hidden" value={beer.id} name="id" /> */}
           <Grid container>
             <Grid item xs={12}>
               <InputLabel htmlFor="name">Name</InputLabel>
-              <Input id="name" type="text" name="name" required />
+              <Input
+                defaultValue={beer.name}
+                id="name"
+                type="text"
+                name="name"
+                required
+              />
             </Grid>
             <Grid item xs={12}>
               <InputLabel htmlFor="brand">Brand</InputLabel>
-              <Input id="brand" type="text" name="brand" required />
+              <Input
+                defaultValue={beer.brand}
+                id="brand"
+                type="text"
+                name="brand"
+                required
+              />
             </Grid>
             <Grid item xs={12}>
               <InputLabel htmlFor="color">Color</InputLabel>
-              <Input id="color" type="text" name="color" required />
+              <Input
+                defaultValue={beer.color}
+                id="color"
+                type="text"
+                name="color"
+                required
+              />
             </Grid>
             <Grid item xs={12}>
               <InputLabel htmlFor="aroma">Aroma</InputLabel>
-              <Input id="aroma" type="text" name="aroma" required />
+              <Input
+                defaultValue={beer.aroma}
+                id="aroma"
+                type="text"
+                name="aroma"
+                required
+              />
             </Grid>
             <Grid item xs={12}>
               <InputLabel htmlFor="flavor">Flavor</InputLabel>
-              <Input id="flavor" type="text" name="flavor" required />
+              <Input
+                defaultValue={beer.flavor}
+                id="flavor"
+                type="text"
+                name="flavor"
+                required
+              />
             </Grid>
             <Grid item xs={12}>
               <InputLabel htmlFor="price">Price</InputLabel>
-              <Input id="price" type="text" name="price" required />
+              <Input
+                defaultValue={beer.price}
+                id="price"
+                type="text"
+                name="price"
+                required
+              />
             </Grid>
             <Grid item xs={12}>
               <InputLabel htmlFor="alcoholContent">AlcoholContent</InputLabel>
               <Input
+                defaultValue={beer.alcoholContent}
                 id="alcoholContent"
                 type="text"
                 name="alcoholContent"
@@ -69,7 +106,13 @@ export const EditBeerForm = (props) => {
             </Grid>
             <Grid item xs={12}>
               <InputLabel htmlFor="pints">Pints</InputLabel>
-              <Input id="pints" type="text" name="pints" required />
+              <Input
+                defaultValue={beer.pints}
+                id="pints"
+                type="text"
+                name="pints"
+                required
+              />
             </Grid>
           </Grid>
 
@@ -81,6 +124,6 @@ export const EditBeerForm = (props) => {
 };
 
 EditBeerForm.propTypes = {
-  onEditBeer: PropTypes.func,
+  onNewBeerFormSubmission: PropTypes.func,
   beer: PropTypes.object,
 };

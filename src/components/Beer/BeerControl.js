@@ -62,19 +62,8 @@ class BeerControl extends React.Component {
 
   render() {
     let currentlyVisibleState = null;
-    if (this.props.editBeerForm) {
-      currentlyVisibleState = (
-        <>
-          <EditBeerForm
-            onEditBeerFormSubmission={this.handleEditBeerFormSubmission}
-            beer={this.props.selectBeer}
-          ></EditBeerForm>
-          <Button onClick={() => this.handleEditBeerFormDisplay()}>
-            Return to beers
-          </Button>
-        </>
-      );
-    } else if (this.props.selectBeer != null) {
+
+    if (this.props.selectBeer != null) {
       currentlyVisibleState = (
         <>
           <BeerDetail beer={this.props.selectBeer}></BeerDetail>
@@ -82,6 +71,18 @@ class BeerControl extends React.Component {
             style={{ backgroundColor: "white" }}
             onClick={() => this.handleSelectBeer()}
           >
+            Return to beers
+          </Button>
+        </>
+      );
+    } else if (this.props.editBeerForm) {
+      currentlyVisibleState = (
+        <>
+          <EditBeerForm
+            onEditBeerFormSubmission={this.handleEditBeerFormSubmission}
+            beer={this.props.selectBeer}
+          ></EditBeerForm>
+          <Button onClick={() => this.handleEditBeerFormDisplay()}>
             Return to beers
           </Button>
         </>

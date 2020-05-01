@@ -25,9 +25,10 @@ export const Header = () => {
       <Grid container spacing={3}>
         <Grid item xs={3}>
           <Toolbar>
-            <Link className={classes.navLinks} to="/">
-              Keg House
-            </Link>
+            Keg House
+            {/* <Link className={classes.navLinks} to="/">
+              
+            </Link> */}
           </Toolbar>
         </Grid>
         <Grid item xs={9}>

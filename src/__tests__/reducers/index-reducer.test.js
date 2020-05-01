@@ -16,7 +16,7 @@ describe("rootReducer", () => {
 
   test("Check that initial state of selectBeerReducer matches root reducer", () => {
     expect(store.getState().selectBeer).toEqual(
-      selectBeerReducer({}, { type: null })
+      selectBeerReducer(null, { type: null })
     );
   });
 

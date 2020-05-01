@@ -9,18 +9,19 @@ import { Router, Route, Switch, Redirect } from "react-router-dom";
 function App() {
   return (
     <div className="App">
-      <Router history={history}>
-        <Header></Header>
+      <Header></Header>
+      <BeerControl />
+      {/* <Router history={history}>
         <Switch>
           <Route exact path="/" component={BeerControl} />
-          {/* <Route path="beer/:id" component={BeerDetail} />
+          <Route path="beer/:id" component={BeerDetail} />
           <Route exact path="/ontap" component={BeerList} />
           <Route exact path="/new" component={NewBeerForm} />
           <Route exact path="/about" />
-          <Route exact path="/community" /> */}
+          <Route exact path="/community" />
           <Redirect from="*" to="/" />
         </Switch>
-      </Router>
+      </Router> */}
     </div>
   );
 }
