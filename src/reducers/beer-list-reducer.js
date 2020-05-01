@@ -27,6 +27,7 @@ export default (state = {}, action) => {
       beer = newState[action.payload];
       beer["pints"] -= 1;
       return newState;
+    default:
+      return state;
   }
-  return state;
 };

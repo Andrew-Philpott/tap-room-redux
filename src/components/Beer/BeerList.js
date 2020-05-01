@@ -47,7 +47,13 @@ export const BeerList = (props) => {
   const classes = useStyles();
   return (
     <div>
-      {<img style={{ height: "500", width: "100%" }} src={BeerPic}></img>}
+      {
+        <img
+          style={{ height: "500", width: "100%" }}
+          src={BeerPic}
+          alt="Glass of beer"
+        ></img>
+      }
       <div
         style={{
           marginTop: 80,

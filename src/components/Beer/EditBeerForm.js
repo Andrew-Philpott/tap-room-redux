@@ -1,7 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 import { Input, Button, Grid } from "@material-ui/core";
-import { FormControl, InputLabel } from "@material-ui/core";
+import { InputLabel } from "@material-ui/core";
 
 export const EditBeerForm = (props) => {
   const {

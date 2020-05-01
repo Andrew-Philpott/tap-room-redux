@@ -3,7 +3,6 @@ import { makeStyles } from "@material-ui/core/styles";
 import AppBar from "@material-ui/core/AppBar";
 import Toolbar from "@material-ui/core/Toolbar";
 import Grid from "@material-ui/core/Grid";
-import { Link } from "react-router-dom";
 
 const useStyles = makeStyles({
   navLinks: {
@@ -24,30 +23,13 @@ export const Header = () => {
     <AppBar className={classes.navbar}>
       <Grid container spacing={3}>
         <Grid item xs={3}>
-          <Toolbar>
-            Keg House
-            {/* <Link className={classes.navLinks} to="/">
-              
-            </Link> */}
-          </Toolbar>
+          <Toolbar>Keg House</Toolbar>
         </Grid>
         <Grid item xs={9}>
           <Toolbar>
-            <Grid item xs={2}>
-              {/* <Link className={classes.navLinks} to="/ontap">
-                On Tap
-              </Link> */}
-            </Grid>
-            <Grid item xs={2}>
-              {/* <Link className={classes.navLinks} to="/about">
-                About
-              </Link> */}
-            </Grid>
-            <Grid item xs={2}>
-              {/* <Link className={classes.navLinks} to="/community">
-                Community
-              </Link> */}
-            </Grid>
+            <Grid item xs={2}></Grid>
+            <Grid item xs={2}></Grid>
+            <Grid item xs={2}></Grid>
           </Toolbar>
         </Grid>
       </Grid>
