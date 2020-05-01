@@ -20,6 +20,8 @@ describe("selectBeerReducer", () => {
   });
 
   test("Should set a beer as the selectBeer", () => {
-    expect(selectBeerReducer({}, { type: c.SELECT_BEER })).toEqual(beer);
+    expect(
+      selectBeerReducer({}, { type: c.SELECT_BEER, payload: beer })
+    ).toEqual(beer);
   });
 });
