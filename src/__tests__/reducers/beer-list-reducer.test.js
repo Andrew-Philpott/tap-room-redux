@@ -30,9 +30,6 @@ describe("beerListReducer", () => {
     reviews: [{ rating: "5", description: "Great stuff" }],
   };
 
-  let increasedBeerPintQuantityByOne = beer;
-  increasedBeerPintQuantityByOne.pints += 1;
-
   test("Should return default state if there is no action type passed into the reducer", () => {
     expect(beerListReducer({}, { type: null })).toEqual({});
   });
@@ -67,12 +64,26 @@ describe("beerListReducer", () => {
   });
 
   test("Should successfully increase the number of pints for a beer", () => {
+    let increasedBeerPintQuantityByOne = beer;
+    increasedBeerPintQuantityByOne.pints += 1;
     action = {
       type: c.INCREASE_BEER_PINT_QUANTITY,
       payload: beer.id,
     };
     expect(beerListReducer({ [beer.id]: beer }, action)).toEqual({
       [beer.id]: increasedBeerPintQuantityByOne,
+    });
+  });
+
+  test("Should successfully decrease the number of pints for a beer", () => {
+    let decreasedBeerPintQuantityByOne = beer;
+    decreasedBeerPintQuantityByOne.pints -= 1;
+    action = {
+      type: c.DECREASE_BEER_PINT_QUANTITY,
+      payload: beer.id,
+    };
+    expect(beerListReducer({ [beer.id]: beer }, action)).toEqual({
+      [beer.id]: decreaseBeerPintQuantity,
     });
   });
 });
