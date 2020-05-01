@@ -6,113 +6,95 @@ import { BeerDetail } from "./BeerDetail";
 import { BeerList } from "./BeerList";
 import { EditBeerForm } from "./EditBeerForm";
 import { connect } from "react-redux";
+import * as a from "../../actions";
 
 class BeerControl extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {
-      listAvailableOnPage: true,
-      formVisibleOnPage: false,
-      editFormVisibleOnPage: false,
-      detailVisibleOnPage: false,
-      selectedBeer: null,
-      disableButton: null,
-    };
   }
 
-  showNewBeerForm = () => {
-    this.setState({ formVisibleOnPage: true });
-  };
-  hideNewBeerForm = () => {
-    this.setState({ formVisibleOnPage: false });
-  };
-  showBeerDetail = (id) => {
-    const beer = this.state.beerList.filter((entry) => entry.id === id)[0];
-    this.setState({ selectedBeer: beer });
-  };
-  hideBeerDetail = () => {
-    this.setState({ detailVisibleOnPage: false });
-    this.setState({ selectedBeer: null });
-  };
-  showEditBeerForm = (id) => {
-    const beer = this.state.beerList.filter((entry) => entry.id === id)[0];
-    this.setState({ selectedBeer: beer });
-    this.setState({ editing: true });
-  };
-  hideEditBeerForum = () => {
-    this.setState({ editing: false });
-    this.setState({ selectedBeer: null });
+  handleNewBeerFormSubmission = (newBeer) => {
+    const { dispatch } = this.props;
+    dispatch(a.newBeerForm(newBeer));
+    dispatch(a.toggleNewBeerFormVisibility());
   };
 
-  handleAddingNewBeerToList = (newBeer) => {
-    const newBeerList = this.state.beerList.concat(newBeer);
-    this.setState({ beerList: newBeerList });
-    this.setState({ formVisibleOnPage: false });
+  handleNewBeerFormDisplay = () => {
+    const { dispatch } = this.props;
+    dispatch(a.toggleNewBeerFormVisibility());
   };
 
-  handleEditingBeer = (editBeer) => {
-    let newBeerList = this.state.beerList.map((entry) => entry);
-    let editBeerIndex = newBeerList.indexOf(
-      newBeerList.find((entry) => entry.id === editBeer.id)
-    );
-    newBeerList[editBeerIndex] = editBeer;
-    this.setState({ beerList: newBeerList });
-    this.setState({ editing: false });
-    this.setState({ selectedBeer: null });
+  handleEditBeerFormSubmission = (editBeer) => {
+    const { dispatch } = this.props;
+    dispatch(a.EditBeerForm(editBeer));
+    dispatch(a.toggleEditBeerFormVisibility());
+  };
+
+  handleEditBeerFormDisplay = () => {
+    const { dispatch } = this.props;
+    dispatch(a.toggleEditBeerFormVisibility());
+  };
+
+  handleSelectBeer = (id) => {
+    const { dispatch } = this.props;
+    if (id === null) {
+      dispatch(a.deselectBeer(beer));
+    } else {
+      const beer = this.state.beerList.filter((entry) => entry.id === id)[0];
+      dispatch(a.selectBeer(beer));
+    }
+  };
+
+  handleDeleteBeer = (id) => {
+    const { dispatch } = this.props;
+    dispatch(a.deleteBeer(id));
   };
 
   handleIncrementingBeerPints = (id) => {
-    let newBeerList = this.state.beerList.map((entry) => entry);
-    newBeerList.find((entry) => entry.id === id).pints += 1;
-    this.setState({ beerList: newBeerList });
-  };
-  handleDecrementingBeerPints = (id) => {
-    let newBeerList = this.state.beerList.map((entry) => entry);
-    newBeerList.find((entry) => entry.id === id).pints -= 1;
-    this.setState({ beerList: newBeerList });
+    const { dispatch } = this.props;
+    dispatch(a.increaseBeerPintQuantity(id));
   };
 
-  handleRemovingBeerFromList = (id) => {
-    const newBeerList = this.state.beerList.filter((entry) => entry.id !== id);
-    this.setState({ beerList: newBeerList });
+  handleDecrementingBeerPints = (id) => {
+    const { dispatch } = this.props;
+    dispatch(a.decreaseBeerPintQuantity(id));
   };
 
   render() {
     let currentlyVisibleState = null;
-    let addBeerButton = null;
-    if (this.state.editing) {
+    if (this.props.editBeerForm) {
       currentlyVisibleState = (
         <>
           <EditBeerForm
-            onEditBeer={this.handleEditingBeer}
-            beer={this.state.selectedBeer}
+            onEditBeer={this.handleEditBeerFormSubmission}
+            beer={this.props.selectBeer}
           ></EditBeerForm>
-          <Button onClick={() => this.hideEditBeerForum()}>
+          <Button onClick={() => this.handleEditBeerFormDisplay()}>
             Return to beers
           </Button>
         </>
       );
-    } else if (this.state.selectedBeer != null) {
+    } else if (this.props.selectBeer != null) {
       currentlyVisibleState = (
         <>
-          <BeerDetail beer={this.state.selectedBeer}></BeerDetail>
+          <BeerDetail beer={this.props.selectBeer}></BeerDetail>
           <Button
             style={{ backgroundColor: "white" }}
-            onClick={() => this.hideBeerDetail()}
+            onClick={() => this.handleSelectBeer()}
           >
             Return to beers
           </Button>
         </>
       );
-    } else if (this.state.formVisibleOnPage) {
+    } else if (this.props.newBeerForm) {
       currentlyVisibleState = (
         <>
           <NewBeerForm
-            onNewBeerCreation={this.handleAddingNewBeerToList}
+            onNewBeerCreation={this.handleNewBeerFormSubmission}
           ></NewBeerForm>
           <Button
             style={{ backgroundColor: "white" }}
-            onClick={() => this.hideNewBeerForum()}
+            onClick={() => this.handleNewBeerFormDisplay()}
           >
             Return to beers
           </Button>
@@ -124,11 +106,11 @@ class BeerControl extends React.Component {
           <BeerList
             onBeerPintIncrement={this.handleIncrementingBeerPints}
             onBeerPintDecrement={this.handleDecrementingBeerPints}
-            onShowBeerDetail={this.showBeerDetail}
-            onRemoveBeer={this.handleRemovingBeerFromList}
-            onShowEditBeer={this.showEditBeerForm}
-            onShowNewBeerForm={this.showNewBeerForm}
-            beerList={this.state.beerList}
+            onShowBeerDetail={this.handleSelectBeer}
+            onDeleteBeer={this.handleDeleteBeer}
+            onDisplayEditBeerForm={this.handleEditBeerFormDisplay}
+            onDisplayNewBeerForm={this.handleNewBeerFormDisplay}
+            beerList={this.props.beerList}
           />
         </>
       );
@@ -141,7 +123,7 @@ const mapStateToProps = (state) => {
   return {
     beerList: state.beerList,
     newBeerForm: state.newBeerForm,
-    newBeerEdit: state.editBeerForm,
+    editBeerForm: state.editBeerForm,
     selectBeer: state.selectBeer,
   };
 };
