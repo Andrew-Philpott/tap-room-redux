@@ -1,11 +1,20 @@
 import * as a from "../actions/ActionTypes";
 
-export default (state = [], action) => {
+export default (state = {}, action) => {
+  let newState = {};
   switch (action.type) {
     case a.NEW_BEER:
-      return [...state, action.payload];
+      newState = { ...state };
+      newState[action.payload.id] = action.payload;
+      return newState;
     case a.DELETE_BEER:
-      return [...state].filter((x) => x.id !== action.payload);
+      newState = { ...state };
+      delete newState[action.payload];
+      return newState;
+    case a.UPDATE_BEER:
+      newState = { ...state };
+      newState[action.payload.id] = action.payload;
+      return newState;
   }
   return state;
 };

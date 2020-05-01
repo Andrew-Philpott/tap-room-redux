@@ -31,7 +31,7 @@ describe("beerListReducer", () => {
   };
 
   test("Should return default state if there is no action type passed into the reducer", () => {
-    expect(beerListReducer([], { type: null })).toEqual([]);
+    expect(beerListReducer({}, { type: null })).toEqual({});
   });
 
   test("Should successfully add new beer to the beer list", () => {
@@ -40,7 +40,7 @@ describe("beerListReducer", () => {
       payload: beer,
     };
 
-    expect(beerListReducer([], action)).toEqual([beer]);
+    expect(beerListReducer({}, action)).toEqual({ [beer.id]: beer });
   });
 
   test("Should successfully delete a beer from the beer list", () => {
@@ -49,7 +49,7 @@ describe("beerListReducer", () => {
       payload: 1,
     };
 
-    expect(beerListReducer([beer], action)).toEqual([]);
+    expect(beerListReducer({ [beer.id]: beer }, action)).toEqual({});
   });
 
   test("Should successfully update a beer in the beer list", () => {
@@ -58,6 +58,8 @@ describe("beerListReducer", () => {
       payload: updatedBeer,
     };
 
-    expect(beerListReducer([beer], action)).toEqual([updatedBeer]);
+    expect(beerListReducer({ [beer.id]: beer }, action)).toEqual({
+      [updatedBeer.id]: updatedBeer,
+    });
   });
 });

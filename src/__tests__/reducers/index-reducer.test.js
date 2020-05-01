@@ -9,7 +9,7 @@ let store = createStore(rootReducer);
 describe("rootReducer", () => {
   test("Check that initial state of beerListReducer matches root reducer", () => {
     expect(store.getState().beerList).toEqual(
-      beerListReducer([], { type: null })
+      beerListReducer({}, { type: null })
     );
   });
 });
