@@ -27,4 +27,10 @@ describe("beer list actions", () => {
       type: c.TOGGLE_NEW_BEER_FORM_VISIBILITY,
     });
   });
+
+  it("toggleNewBeerFormVisibility correctly creates a TOGGLE_NEW_BEER_FORM_VISIBILITY action", () => {
+    expect(a.toggleNewBeerFormVisibility()).toEqual({
+      type: c.TOGGLE_NEW_BEER_FORM_VISIBILITY,
+    });
+  });
 });

@@ -22,3 +22,13 @@ export const toggleEditBeerFormVisibility = () => ({
 export const toggleNewBeerFormVisibility = () => ({
   type: a.TOGGLE_NEW_BEER_FORM_VISIBILITY,
 });
+
+export const increaseBeerPintQuantity = (id) => ({
+  type: a.INCREASE_BEER_PINT_QUANTITY,
+  payload: id,
+});
+
+export const decreaseBeerPintQuantity = (id) => ({
+  type: a.DECREASE_BEER_PINT_QUANTITY,
+  payload: id,
+});
