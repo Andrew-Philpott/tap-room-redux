@@ -15,7 +15,7 @@ class BeerControl extends React.Component {
 
   handleNewBeerFormSubmission = (newBeer) => {
     const { dispatch } = this.props;
-    dispatch(a.newBeerForm(newBeer));
+    dispatch(a.newBeer(newBeer));
     dispatch(a.toggleNewBeerFormVisibility());
   };
 
@@ -26,7 +26,7 @@ class BeerControl extends React.Component {
 
   handleEditBeerFormSubmission = (editBeer) => {
     const { dispatch } = this.props;
-    dispatch(a.EditBeerForm(editBeer));
+    dispatch(a.updateBeer(editBeer));
     dispatch(a.toggleEditBeerFormVisibility());
   };
 
@@ -37,10 +37,10 @@ class BeerControl extends React.Component {
 
   handleSelectBeer = (id) => {
     const { dispatch } = this.props;
-    if (id === null) {
-      dispatch(a.deselectBeer(beer));
+    if (id === undefined) {
+      dispatch(a.deselectBeer());
     } else {
-      const beer = this.state.beerList.filter((entry) => entry.id === id)[0];
+      const beer = this.props.beerList[id];
       dispatch(a.selectBeer(beer));
     }
   };
@@ -66,7 +66,7 @@ class BeerControl extends React.Component {
       currentlyVisibleState = (
         <>
           <EditBeerForm
-            onEditBeer={this.handleEditBeerFormSubmission}
+            onEditBeerFormSubmission={this.handleEditBeerFormSubmission}
             beer={this.props.selectBeer}
           ></EditBeerForm>
           <Button onClick={() => this.handleEditBeerFormDisplay()}>
@@ -90,7 +90,7 @@ class BeerControl extends React.Component {
       currentlyVisibleState = (
         <>
           <NewBeerForm
-            onNewBeerCreation={this.handleNewBeerFormSubmission}
+            onNewBeerFormSubmission={this.handleNewBeerFormSubmission}
           ></NewBeerForm>
           <Button
             style={{ backgroundColor: "white" }}
@@ -106,7 +106,7 @@ class BeerControl extends React.Component {
           <BeerList
             onBeerPintIncrement={this.handleIncrementingBeerPints}
             onBeerPintDecrement={this.handleDecrementingBeerPints}
-            onShowBeerDetail={this.handleSelectBeer}
+            onDisplayBeerDetail={this.handleSelectBeer}
             onDeleteBeer={this.handleDeleteBeer}
             onDisplayEditBeerForm={this.handleEditBeerFormDisplay}
             onDisplayNewBeerForm={this.handleNewBeerFormDisplay}

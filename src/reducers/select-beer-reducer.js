@@ -5,7 +5,7 @@ export default (state = {}, action) => {
     case a.SELECT_BEER:
       return action.payload;
     case a.DESELECT_BEER:
-      return {};
+      return null;
     default:
       return state;
   }

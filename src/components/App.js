@@ -1,14 +1,10 @@
 import React from "react";
 import "./App.css";
 import BeerControl from "./Beer/BeerControl";
-import { Home } from "./Home/Home";
 import { Header } from "./Header";
 import "typeface-roboto";
 import { history } from "../helpers/history";
 import { Router, Route, Switch, Redirect } from "react-router-dom";
-import BeerDetail from "./Beer/BeerDetail";
-import { BeerList } from "./Beer/BeerList";
-import { NewBeerForm } from "./Beer/NewBeerForm";
 
 function App() {
   return (

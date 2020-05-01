@@ -20,7 +20,7 @@ export const NewBeerForm = (props) => {
   const classes = useStyles();
   function handleNewBeerFormSubmission(event) {
     event.preventDefault();
-    props.onNewBeerCreation({
+    props.onNewBeerFormSubmission({
       id: v4(),
       name: event.target.name.value,
       brand: event.target.brand.value,

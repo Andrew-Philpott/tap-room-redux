@@ -34,7 +34,15 @@ const useStyles = makeStyles({
 });
 
 export const BeerList = (props) => {
-  const { beerList } = props;
+  const {
+    beerList,
+    onDisplayBeerDetail,
+    onDisplayEditBeerForm,
+    onDisplayNewBeerForm,
+    onDeleteBeer,
+    onBeerPintIncrement,
+    onBeerPintDecrement,
+  } = props;
   const isBackgroundBlack = true;
   const classes = useStyles();
   return (
@@ -54,7 +62,7 @@ export const BeerList = (props) => {
           <Grid item xs={4}>
             <Button
               style={{ backgroundColor: "white", float: "right" }}
-              onClick={() => props.onShowNewBeerForm()}
+              onClick={() => onDisplayNewBeerForm()}
             >
               Add beer
             </Button>
@@ -101,12 +109,12 @@ export const BeerList = (props) => {
                   </TableRow>
                 </TableHead>
                 <TableBody>
-                  {beerList &&
-                    beerList.map((beer) => (
+                  {beerList !== null &&
+                    Object.keys(beerList).map((beer) => (
                       <TableRow key={beer.id}>
                         <TableCell className={classes.tableCell}>
                           <span
-                            onClick={() => props.onShowBeerDetail(beer.id)}
+                            onClick={() => onDisplayBeerDetail(beer.id)}
                             className={classes.actionLinkStyle}
                           >
                             {beer.name}
@@ -166,7 +174,7 @@ export const BeerList = (props) => {
                           >
                             <span
                               style={{ fontSize: "1.8em" }}
-                              onClick={() => props.onBeerPintDecrement(beer.id)}
+                              onClick={() => onBeerPintDecrement(beer.id)}
                               className={classes.actionLinkStyle}
                             >
                               -
@@ -189,7 +197,7 @@ export const BeerList = (props) => {
                         <TableCell className={classes.tableCell} align="center">
                           <span
                             className={classes.actionLinkStyle}
-                            onClick={() => props.onBeerPintIncrement(beer.id)}
+                            onClick={() => onBeerPintIncrement(beer.id)}
                           >
                             +
                           </span>
@@ -199,7 +207,7 @@ export const BeerList = (props) => {
                             style={{
                               cursor: "pointer",
                             }}
-                            onClick={() => props.onShowEditBeer(beer.id)}
+                            onClick={() => onDisplayEditBeerForm(beer.id)}
                           ></EditIcon>
                         </TableCell>
                         <TableCell
@@ -210,7 +218,7 @@ export const BeerList = (props) => {
                         >
                           <span
                             className={classes.actionLinkStyle}
-                            onClick={() => props.onRemoveBeer(beer.id)}
+                            onClick={() => onDeleteBeer(beer.id)}
                           >
                             X
                           </span>
@@ -229,12 +237,12 @@ export const BeerList = (props) => {
 
 BeerList.propTypes = {
   beerList: PropTypes.array,
-  onShowBeerDetail: PropTypes.func,
-  onShowNewBeerForm: PropTypes.func,
-  onShowEditBeer: PropTypes.func,
+  onDisplayBeerDetail: PropTypes.func,
+  onDisplayNewBeerForm: PropTypes.func,
+  onDisplayEditBeerForm: PropTypes.func,
   onBeerPintIncrement: PropTypes.func,
   onBeerPintDecrement: PropTypes.func,
-  onRemoveBeer: PropTypes.func,
+  onDeleteBeer: PropTypes.func,
 };
 
 export default BeerList;

@@ -34,14 +34,15 @@ export const BeerDetail = (props) => {
         <Container>
           <Grid item xs={12}>
             <h2>Reviews</h2>
-            {beer.reviews.map((review) => {
-              return (
-                <>
-                  <p>{review.rating}</p>
-                  <p>{review.rating}</p>
-                </>
-              );
-            })}
+            {/* {Object.keys(beer.reviews) &&
+              Object.keys(beer.reviews).map((review) => {
+                return (
+                  <>
+                    <p>{review.rating}</p>
+                    <p>{review.rating}</p>
+                  </>
+                );
+              })} */}
           </Grid>
         </Container>
       </div>
