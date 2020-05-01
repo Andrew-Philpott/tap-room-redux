@@ -9,6 +9,7 @@ import TableRow from "@material-ui/core/TableRow";
 import { Grid, Container, Button } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core";
 import EditIcon from "@material-ui/icons/Edit";
+import BeerPic from "../../assets/img/BeerPic.jpg";
 
 const useStyles = makeStyles({
   orange: {
@@ -45,192 +46,203 @@ export const BeerList = (props) => {
   const isBackgroundBlack = true;
   const classes = useStyles();
   return (
-    <div
-      style={{
-        marginTop: 80,
-        backgroundColor: isBackgroundBlack ? "black" : "white",
-      }}
-    >
-      <Container>
-        <Grid container>
-          <Grid item xs={8}>
-            <span style={{ color: "white", fontSize: "2em" }}>
-              Our selection
-            </span>
-          </Grid>
-          <Grid item xs={4}>
-            <Button
-              style={{ backgroundColor: "white", float: "right" }}
-              onClick={() => onDisplayNewBeerForm()}
-            >
-              Add beer
-            </Button>
-          </Grid>
-          <Grid item xs={12}>
-            <TableContainer>
-              <Table aria-label="simple table">
-                <TableHead>
-                  <TableRow>
-                    <TableCell
-                      className={classes.tableCell}
-                      component="th"
-                      scope="row"
-                    >
-                      On Tap
-                    </TableCell>
-                    <TableCell className={classes.tableCell} align="left">
-                      Brand
-                    </TableCell>
-                    <TableCell className={classes.tableCell} align="left">
-                      Flavor
-                    </TableCell>
-                    <TableCell className={classes.tableCell} align="left">
-                      ABV
-                    </TableCell>
-                    <TableCell className={classes.tableCell} align="left">
-                      Price
-                    </TableCell>
-                    <TableCell className={classes.tableCell} align="left">
-                      Pints
-                    </TableCell>
-                    <TableCell className={classes.tableCell} align="left">
-                      Buy
-                    </TableCell>
-                    <TableCell className={classes.tableCell} align="left">
-                      Restock
-                    </TableCell>
-                    <TableCell className={classes.tableCell} align="left">
-                      Edit
-                    </TableCell>
-                    <TableCell className={classes.tableCell} align="left">
-                      Remove
-                    </TableCell>
-                  </TableRow>
-                </TableHead>
-                <TableBody>
-                  {Object.values(beerList).map((beer) => {
-                    return (
-                      <TableRow key={beer.id}>
-                        <TableCell className={classes.tableCell}>
-                          <span
-                            onClick={() => onDisplayBeerDetail(beer.id)}
-                            className={classes.actionLinkStyle}
-                          >
-                            {beer.name}
-                            {beer.pints > 10 ? (
-                              ""
-                            ) : beer.pints > 0 ? (
-                              <>
-                                <br />
-                                <i style={{ color: "yellow" }}>Almost Empty</i>
-                              </>
-                            ) : (
-                              <>
-                                <br />
-                                <i style={{ color: "red" }}>Out of stock</i>
-                              </>
-                            )}
-                          </span>
-                        </TableCell>
-                        <TableCell className={classes.tableCell} align="left">
-                          {beer.brand}
-                        </TableCell>
-                        <TableCell className={classes.tableCell} align="left">
-                          {beer.flavor}
-                        </TableCell>
-                        <TableCell className={classes.tableCell} align="left">
-                          {beer.alcoholContent}
-                        </TableCell>
-                        {beer.price > 12 ? (
-                          <TableCell
-                            style={{ color: "orange", borderBottom: "none" }}
-                            align="left"
-                          >
-                            {beer.price}
-                          </TableCell>
-                        ) : beer.price > 8 ? (
-                          <TableCell
-                            style={{ color: "yellow", borderBottom: "none" }}
-                            align="left"
-                          >
-                            {beer.price}
-                          </TableCell>
-                        ) : (
-                          <TableCell
-                            style={{ color: "green", borderBottom: "none" }}
-                            align="left"
-                          >
-                            {beer.price}
-                          </TableCell>
-                        )}
-                        <TableCell className={classes.tableCell} align="left">
-                          {beer.pints}
-                        </TableCell>
-                        {beer.pints > 0 ? (
-                          <TableCell
-                            className={classes.tableCell}
-                            align="center"
-                          >
+    <div>
+      {<img style={{ height: "500", width: "100%" }} src={BeerPic}></img>}
+      <div
+        style={{
+          marginTop: 80,
+          backgroundColor: isBackgroundBlack ? "black" : "white",
+        }}
+      >
+        <Container>
+          <Grid container>
+            <Grid item xs={8}>
+              <span style={{ color: "white", fontSize: "2em" }}>
+                Our selection
+              </span>
+            </Grid>
+            <Grid item xs={4}>
+              <Button
+                style={{ backgroundColor: "white", float: "right" }}
+                onClick={() => onDisplayNewBeerForm()}
+              >
+                Add beer
+              </Button>
+            </Grid>
+            <Grid item xs={12}>
+              <TableContainer>
+                <Table aria-label="simple table">
+                  <TableHead>
+                    <TableRow>
+                      <TableCell
+                        className={classes.tableCell}
+                        component="th"
+                        scope="row"
+                      >
+                        On Tap
+                      </TableCell>
+                      <TableCell className={classes.tableCell} align="left">
+                        Brand
+                      </TableCell>
+                      <TableCell className={classes.tableCell} align="left">
+                        Flavor
+                      </TableCell>
+                      <TableCell className={classes.tableCell} align="left">
+                        ABV
+                      </TableCell>
+                      <TableCell className={classes.tableCell} align="left">
+                        Price
+                      </TableCell>
+                      <TableCell className={classes.tableCell} align="left">
+                        Pints
+                      </TableCell>
+                      <TableCell className={classes.tableCell} align="left">
+                        Buy
+                      </TableCell>
+                      <TableCell className={classes.tableCell} align="left">
+                        Restock
+                      </TableCell>
+                      <TableCell className={classes.tableCell} align="left">
+                        Edit
+                      </TableCell>
+                      <TableCell className={classes.tableCell} align="left">
+                        Remove
+                      </TableCell>
+                    </TableRow>
+                  </TableHead>
+                  <TableBody>
+                    {Object.values(beerList).map((beer) => {
+                      return (
+                        <TableRow key={beer.id}>
+                          <TableCell className={classes.tableCell}>
                             <span
-                              style={{ fontSize: "1.8em" }}
-                              onClick={() => onBeerPintDecrement(beer.id)}
+                              onClick={() => onDisplayBeerDetail(beer.id)}
                               className={classes.actionLinkStyle}
                             >
-                              -
+                              {beer.name}
+                              {beer.pints > 10 ? (
+                                ""
+                              ) : beer.pints > 0 ? (
+                                <>
+                                  <br />
+                                  <i style={{ color: "yellow" }}>
+                                    Almost Empty
+                                  </i>
+                                </>
+                              ) : (
+                                <>
+                                  <br />
+                                  <i style={{ color: "red" }}>Out of stock</i>
+                                </>
+                              )}
                             </span>
                           </TableCell>
-                        ) : (
-                          <TableCell
-                            className={classes.tableCell}
-                            align="center"
-                          >
-                            <span
-                              style={{ fontSize: "1.8em" }}
-                              className={classes.actionLinkStyle}
+                          <TableCell className={classes.tableCell} align="left">
+                            {beer.brand}
+                          </TableCell>
+                          <TableCell className={classes.tableCell} align="left">
+                            {beer.flavor}
+                          </TableCell>
+                          <TableCell className={classes.tableCell} align="left">
+                            {beer.alcoholContent}
+                          </TableCell>
+                          {beer.price > 12 ? (
+                            <TableCell
+                              style={{ color: "orange", borderBottom: "none" }}
+                              align="left"
                             >
-                              -
-                            </span>
+                              {beer.price}
+                            </TableCell>
+                          ) : beer.price > 8 ? (
+                            <TableCell
+                              style={{ color: "yellow", borderBottom: "none" }}
+                              align="left"
+                            >
+                              {beer.price}
+                            </TableCell>
+                          ) : (
+                            <TableCell
+                              style={{ color: "green", borderBottom: "none" }}
+                              align="left"
+                            >
+                              {beer.price}
+                            </TableCell>
+                          )}
+                          <TableCell className={classes.tableCell} align="left">
+                            {beer.pints}
                           </TableCell>
-                        )}
+                          {beer.pints > 0 ? (
+                            <TableCell
+                              className={classes.tableCell}
+                              align="center"
+                            >
+                              <span
+                                style={{ fontSize: "1.8em" }}
+                                onClick={() => onBeerPintDecrement(beer.id)}
+                                className={classes.actionLinkStyle}
+                              >
+                                -
+                              </span>
+                            </TableCell>
+                          ) : (
+                            <TableCell
+                              className={classes.tableCell}
+                              align="center"
+                            >
+                              <span
+                                style={{ fontSize: "1.8em" }}
+                                className={classes.actionLinkStyle}
+                              >
+                                -
+                              </span>
+                            </TableCell>
+                          )}
 
-                        <TableCell className={classes.tableCell} align="center">
-                          <span
-                            className={classes.actionLinkStyle}
-                            onClick={() => onBeerPintIncrement(beer.id)}
+                          <TableCell
+                            className={classes.tableCell}
+                            align="center"
                           >
-                            +
-                          </span>
-                        </TableCell>
-                        <TableCell className={classes.tableCell} align="center">
-                          <EditIcon
+                            <span
+                              className={classes.actionLinkStyle}
+                              onClick={() => onBeerPintIncrement(beer.id)}
+                            >
+                              +
+                            </span>
+                          </TableCell>
+                          <TableCell
+                            className={classes.tableCell}
+                            align="center"
+                          >
+                            <EditIcon
+                              style={{
+                                cursor: "pointer",
+                              }}
+                              onClick={() => onDisplayEditBeerForm(beer.id)}
+                            ></EditIcon>
+                          </TableCell>
+                          <TableCell
                             style={{
-                              cursor: "pointer",
+                              borderBottom: "none",
                             }}
-                            onClick={() => onDisplayEditBeerForm(beer.id)}
-                          ></EditIcon>
-                        </TableCell>
-                        <TableCell
-                          style={{
-                            borderBottom: "none",
-                          }}
-                          align="center"
-                        >
-                          <span
-                            className={classes.actionLinkStyle}
-                            onClick={() => onDeleteBeer(beer.id)}
+                            align="center"
                           >
-                            X
-                          </span>
-                        </TableCell>
-                      </TableRow>
-                    );
-                  })}
-                </TableBody>
-              </Table>
-            </TableContainer>
+                            <span
+                              className={classes.actionLinkStyle}
+                              onClick={() => onDeleteBeer(beer.id)}
+                            >
+                              X
+                            </span>
+                          </TableCell>
+                        </TableRow>
+                      );
+                    })}
+                  </TableBody>
+                </Table>
+              </TableContainer>
+            </Grid>
           </Grid>
-        </Grid>
-      </Container>
+        </Container>
+      </div>
     </div>
   );
 };
