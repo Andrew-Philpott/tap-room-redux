@@ -83,7 +83,7 @@ describe("beerListReducer", () => {
       payload: beer.id,
     };
     expect(beerListReducer({ [beer.id]: beer }, action)).toEqual({
-      [beer.id]: decreaseBeerPintQuantity,
+      [beer.id]: decreasedBeerPintQuantityByOne,
     });
   });
 });

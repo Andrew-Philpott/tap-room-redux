@@ -1,7 +1,9 @@
 import * as a from "../actions/ActionTypes";
+import { act } from "react-dom/test-utils";
 
 export default (state = {}, action) => {
   let newState = {};
+  let beer = null;
   switch (action.type) {
     case a.NEW_BEER:
       newState = { ...state };
@@ -17,9 +19,14 @@ export default (state = {}, action) => {
       return newState;
     case a.INCREASE_BEER_PINT_QUANTITY:
       newState = { ...state };
-      let beer = newState[action.payload];
+      beer = newState[action.payload];
       beer.pints += 1;
       newState[action.payload] = beer;
+      return newState;
+    case a.DECREASE_BEER_PINT_QUANTITY:
+      newState = { ...state };
+      beer = newState[action.payload];
+      beer.pints -= 1;
       return newState;
   }
   return state;
