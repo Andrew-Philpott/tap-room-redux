@@ -1,85 +1,10 @@
 import React from "react";
 import { v4 } from "uuid";
 import { NewBeerForm } from "./NewBeerForm";
-import { Button, Container, Grid } from "@material-ui/core";
+import { Button } from "@material-ui/core";
 import { BeerDetail } from "./BeerDetail";
 import { BeerList } from "./BeerList";
 import { EditBeerForm } from "./EditBeerForm";
-
-const beerList = [
-  {
-    id: v4(),
-    name: "Universale",
-    brand: "Fremont",
-    color: "Golden caramel",
-    aroma: "Citrus, apple, biscuit",
-    flavor: "Pine, orange, bready",
-    price: 5,
-    alcoholContent: 5.6,
-    pints: 124,
-    reviews: [
-      {
-        rating: 5,
-        comments: "Amazing, the best. Buy it and you won't regret it.",
-      },
-      { rating: 3, comments: "I've had better." },
-    ],
-  },
-  {
-    id: v4(),
-    name: "Interurban",
-    brand: "Fremont",
-    color: "Yellow amber",
-    aroma: "Orange, dank, juicy",
-    flavor: "Grapefruit, pine, honey",
-    price: 5,
-    alcoholContent: 6.2,
-    pints: 124,
-    reviews: [
-      {
-        rating: 5,
-        comments: "Amazing, the best. Buy it and you won't regret it.",
-      },
-      { rating: 3, comments: "I've had better." },
-    ],
-  },
-  {
-    id: v4(),
-    name: "Universale",
-    brand: "Fremont",
-    color: "Golden caramel",
-    aroma: "Citrus, apple, biscuit",
-    flavor: "Pine, orange, bready",
-    price: 5,
-    alcoholContent: 5.6,
-    pints: 124,
-    reviews: [
-      {
-        rating: 5,
-        comments: "Amazing, the best. Buy it and you won't regret it.",
-      },
-      { rating: 3, comments: "I've had better." },
-    ],
-  },
-  {
-    id: v4(),
-    name: "Universale",
-    brand: "Fremont",
-    color: "Something",
-    aroma: "Something",
-    flavor: "Something",
-    price: 5,
-    alcoholContent: 5.6,
-    pints: 1,
-    reviews: [
-      {
-        rating: 5,
-        comments: "Amazing, the best. Buy it and you won't regret it.",
-      },
-      { rating: 3, comments: "I've had better." },
-    ],
-  },
-];
 
 class BeerControl extends React.Component {
   constructor(props) {
