@@ -4,11 +4,23 @@ import { Input, Button, makeStyles, Grid } from "@material-ui/core";
 import { FormControl, InputLabel } from "@material-ui/core";
 
 export const EditBeerForm = (props) => {
-  const { beer, onNewBeerFormSubmission } = props;
+  // const {
+  //   brand,
+  //   color,
+  //   aroma,
+  //   flavor,
+  //   alcoholContent,
+  //   reviews,
+  //   price,
+  //   name,
+  //   pints,
+  //   id,
+  // } = props.beer;
+  const { beer, onEditBeerFormSubmission } = props;
   const isBackgroundBlack = false;
   function handleEditBeerFormSubmission(event) {
     event.preventDefault();
-    onNewBeerFormSubmission({
+    onEditBeerFormSubmission({
       id: beer.id,
       name: event.target.name.value,
       brand: event.target.brand.value,
@@ -126,4 +138,13 @@ export const EditBeerForm = (props) => {
 EditBeerForm.propTypes = {
   onNewBeerFormSubmission: PropTypes.func,
   beer: PropTypes.object,
+  // name: PropTypes.string,
+  // price: PropTypes.number,
+  // alcoholContent: PropTypes.number,
+  // aroma: PropTypes.string,
+  // color: PropTypes.string,
+  // pints: PropTypes.number,
+  // flavor: PropTypes.string,
+  // brand: PropTypes.string,
+  // reviews: PropTypes.object,
 };

@@ -27,13 +27,15 @@ class BeerControl extends React.Component {
   handleEditBeerFormSubmission = (editBeer) => {
     const { dispatch } = this.props;
     dispatch(a.updateBeer(editBeer));
+    dispatch(a.deselectBeer());
     dispatch(a.toggleEditBeerFormVisibility());
   };
 
   handleEditBeerFormDisplay = (id) => {
     const { dispatch } = this.props;
     if (this.props.selectBeer === null) {
-      dispatch(a.selectBeer(id));
+      const editBeer = this.props.beerList[id];
+      dispatch(a.selectBeer(editBeer));
     } else {
       dispatch(a.deselectBeer());
     }
@@ -68,7 +70,22 @@ class BeerControl extends React.Component {
   render() {
     let currentlyVisibleState = null;
 
-    if (this.props.selectBeer != null) {
+    if (this.props.editBeerForm) {
+      currentlyVisibleState = (
+        <>
+          <EditBeerForm
+            onEditBeerFormSubmission={this.handleEditBeerFormSubmission}
+            beer={this.props.selectBeer}
+          ></EditBeerForm>
+          <Button
+            style={{ backgroundColor: "white" }}
+            onClick={() => this.handleEditBeerFormDisplay()}
+          >
+            Return to beers
+          </Button>
+        </>
+      );
+    } else if (this.props.selectBeer != null) {
       currentlyVisibleState = (
         <>
           <BeerDetail beer={this.props.selectBeer}></BeerDetail>
@@ -76,18 +93,6 @@ class BeerControl extends React.Component {
             style={{ backgroundColor: "white" }}
             onClick={() => this.handleSelectBeer()}
           >
-            Return to beers
-          </Button>
-        </>
-      );
-    } else if (this.props.editBeerForm) {
-      currentlyVisibleState = (
-        <>
-          <EditBeerForm
-            onEditBeerFormSubmission={this.handleEditBeerFormSubmission}
-            beer={this.props.selectBeer}
-          ></EditBeerForm>
-          <Button onClick={() => this.handleEditBeerFormDisplay()}>
             Return to beers
           </Button>
         </>
