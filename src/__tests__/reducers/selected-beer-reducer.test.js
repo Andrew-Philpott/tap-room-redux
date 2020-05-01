@@ -1,7 +1,7 @@
-import selectedBeerReducer from "../../reducers/selected-beer-reducer";
+import selectBeerReducer from "../../reducers/select-beer-reducer";
 
-describe("selectedBeerReducer", () => {
+describe("selectBeerReducer", () => {
   test("Should return default state if no action type is recognized", () => {
-    expect(selectedBeerReducer({}, { type: null })).toEqual({});
+    expect(selectBeerReducer({}, { type: null })).toEqual({});
   });
 });

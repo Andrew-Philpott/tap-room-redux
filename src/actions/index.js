@@ -32,3 +32,12 @@ export const decreaseBeerPintQuantity = (id) => ({
   type: a.DECREASE_BEER_PINT_QUANTITY,
   payload: id,
 });
+
+export const selectBeer = (beer) => ({
+  type: a.SELECT_BEER,
+  payload: beer,
+});
+
+export const deselectBeer = () => ({
+  type: a.DESELECT_BEER,
+});

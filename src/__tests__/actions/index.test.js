@@ -41,4 +41,11 @@ describe("beer list actions", () => {
       payload: 1,
     });
   });
+
+  it("selectBeer correctly creates a SELECT_BEER action", () => {
+    expect(a.selectBeer(beer)).toEqual({
+      type: c.SELECT_BEER,
+      payload: beer,
+    });
+  });
 });
