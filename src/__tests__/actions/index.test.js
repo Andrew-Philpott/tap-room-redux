@@ -11,4 +11,8 @@ describe("beer list actions", () => {
   it("deleteBeer correctly creates a DELETE_BEER action", () => {
     expect(a.deleteBeer(1)).toEqual({ type: c.DELETE_BEER, payload: 1 });
   });
+
+  it("updateBeer correctly creates a UPDATE_BEER action", () => {
+    expect(a.updateBeer(1)).toEqual({ type: c.UPDATE_BEER, payload: 1 });
+  });
 });
