@@ -48,4 +48,10 @@ describe("beer list actions", () => {
       payload: beer,
     });
   });
+
+  it("deselectBeer correctly creates a DESELECT_BEER action", () => {
+    expect(a.deselectBeer()).toEqual({
+      type: c.DESELECT_BEER,
+    });
+  });
 });
