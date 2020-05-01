@@ -5,6 +5,7 @@ import { Button } from "@material-ui/core";
 import { BeerDetail } from "./BeerDetail";
 import { BeerList } from "./BeerList";
 import { EditBeerForm } from "./EditBeerForm";
+import { connect } from "react-redux";
 
 class BeerControl extends React.Component {
   constructor(props) {
@@ -135,5 +136,16 @@ class BeerControl extends React.Component {
     return <>{currentlyVisibleState}</>;
   }
 }
+
+const mapStateToProps = (state) => {
+  return {
+    beerList: state.beerList,
+    newBeerForm: state.newBeerForm,
+    newBeerEdit: state.editBeerForm,
+    selectBeer: state.selectBeer,
+  };
+};
+
+BeerControl = connect(mapStateToProps)(BeerControl);
 
 export default BeerControl;
