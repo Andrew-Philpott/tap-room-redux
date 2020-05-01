@@ -5,7 +5,7 @@ import * as c from "../../actions/ActionTypes";
 describe("beerListReducer", () => {
   let action;
   const beer = {
-    id: 0,
+    id: 1,
     name: "Universale",
     brand: "Fremont",
     color: "Golden caramel",
@@ -28,5 +28,14 @@ describe("beerListReducer", () => {
     };
 
     expect(beerListReducer([], action)).toEqual([beer]);
+  });
+
+  test("Should successfully delete a beer from the beer list", () => {
+    action = {
+      type: c.DELETE_BEER,
+      payload: 1,
+    };
+
+    expect(beerListReducer([beer], action)).toEqual([]);
   });
 });
