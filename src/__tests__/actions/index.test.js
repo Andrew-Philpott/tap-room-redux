@@ -7,4 +7,8 @@ describe("beer list actions", () => {
   it("newBeer correctly creates a NEW_BEER action", () => {
     expect(a.newBeer(beer)).toEqual({ type: c.NEW_BEER, payload: beer });
   });
+
+  it("deleteBeer correctly creates a DELETE_BEER action", () => {
+    expect(a.deleteBeer(1)).toEqual({ type: c.DELETE_BEER, payload: 1 });
+  });
 });
