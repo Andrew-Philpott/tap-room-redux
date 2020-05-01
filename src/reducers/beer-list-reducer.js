@@ -1,5 +1,4 @@
 import * as a from "../actions/ActionTypes";
-import { act } from "react-dom/test-utils";
 
 export default (state = {}, action) => {
   let newState = {};
