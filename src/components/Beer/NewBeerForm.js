@@ -1,11 +1,19 @@
 import { v4 } from "uuid";
 import React from "react";
 import PropTypes from "prop-types";
-import { Input, Button, Grid } from "@material-ui/core";
-import { FormControl, InputLabel } from "@material-ui/core";
+import { makeStyles, Button } from "@material-ui/core";
+
+const useStyles = makeStyles({
+  label: {
+    color: "white",
+  },
+  buttons: {
+    backgroundColor: "white",
+  },
+});
 
 export const NewBeerForm = (props) => {
-  const isBackgroundBlack = false;
+  const classes = useStyles();
   function handleNewBeerFormSubmission(event) {
     event.preventDefault();
     props.onNewBeerFormSubmission({
@@ -15,82 +23,115 @@ export const NewBeerForm = (props) => {
       color: event.target.color.value,
       aroma: event.target.aroma.value,
       flavor: event.target.flavor.value,
-      price: event.target.price.value,
-      alcoholContent: event.target.alcoholContent.value,
-      pints: event.target.pints.value,
+      price: parseInt(event.target.price.value),
+      alcoholContent: parseInt(event.target.alcoholContent.value),
+      pints: parseInt(event.target.pints.value),
     });
   }
   return (
-    <React.Fragment>
-      <div
-        style={{
-          width: "100%",
-          marginTop: "25%",
-          color: "white",
-          backgroundColor: isBackgroundBlack ? "black" : "white",
-        }}
-      >
-        <form onSubmit={handleNewBeerFormSubmission}>
-          <Grid container>
-            <Grid item xs={12}>
-              <FormControl variant="outlined">
-                <InputLabel htmlFor="name">Name</InputLabel>
-                <Input id="name" type="text" name="name" required />
-              </FormControl>
-            </Grid>
-            <Grid item xs={12}>
-              <FormControl variant="outlined">
-                <InputLabel htmlFor="brand">Brand</InputLabel>
-                <Input id="brand" type="text" name="brand" required />
-              </FormControl>
-            </Grid>
-            <Grid item xs={12}>
-              <FormControl variant="outlined">
-                <InputLabel htmlFor="color">Color</InputLabel>
-                <Input id="color" type="text" name="color" required />
-              </FormControl>
-            </Grid>
-            <Grid item xs={12}>
-              <FormControl variant="outlined">
-                <InputLabel htmlFor="aroma">Aroma</InputLabel>
-                <Input id="aroma" type="text" name="aroma" required />
-              </FormControl>
-            </Grid>
-            <Grid item xs={12}>
-              <FormControl variant="outlined">
-                <InputLabel htmlFor="flavor">Flavor</InputLabel>
-                <Input id="flavor" type="text" name="flavor" required />
-              </FormControl>
-            </Grid>
-            <Grid item xs={12}>
-              <FormControl variant="outlined">
-                <InputLabel htmlFor="price">Price</InputLabel>
-                <Input id="price" type="text" name="price" required />
-              </FormControl>
-            </Grid>
-            <Grid item xs={12}>
-              <FormControl variant="outlined">
-                <InputLabel htmlFor="alcoholContent">AlcoholContent</InputLabel>
-                <Input
-                  id="alcoholContent"
-                  type="text"
-                  name="alcoholContent"
-                  required
-                />
-              </FormControl>
-            </Grid>
-            <Grid item xs={12}>
-              <FormControl variant="outlined">
-                <InputLabel htmlFor="pints">Pints</InputLabel>
-                <Input id="pints" type="text" name="pints" required />
-              </FormControl>
-            </Grid>
-          </Grid>
+    <div style={{ marginTop: "70px" }} className={"col-lg-8 offset-lg-2"}>
+      <form onSubmit={handleNewBeerFormSubmission}>
+        <div className="form-group">
+          <label className={classes.label}>Name</label>
+          <input id="name" type="text" name="name" className={"form-control"} />
+        </div>
 
-          <Button type="submit">Add Beer</Button>
-        </form>
-      </div>
-    </React.Fragment>
+        <div className="form-group">
+          <label className={classes.label}>Brand</label>
+          <input
+            id="brand"
+            type="text"
+            name="brand"
+            className={"form-control"}
+          />
+        </div>
+
+        <div className="form-group">
+          <label className={classes.label} htmlFor="color">
+            Color
+          </label>
+          <input
+            id="color"
+            type="text"
+            name="color"
+            className={"form-control"}
+          />
+        </div>
+
+        <div className="form-group">
+          <label className={classes.label} htmlFor="aroma">
+            Aroma
+          </label>
+          <input
+            id="aroma"
+            type="text"
+            name="aroma"
+            className={"form-control"}
+          />
+        </div>
+
+        <div className="form-group">
+          <label className={classes.label} htmlFor="flavor">
+            Flavor
+          </label>
+          <input
+            id="flavor"
+            type="text"
+            name="flavor"
+            className={"form-control"}
+          />
+        </div>
+
+        <div className="form-group">
+          <label className={classes.label} htmlFor="price">
+            Price
+          </label>
+          <input
+            id="price"
+            type="text"
+            name="price"
+            className={"form-control"}
+          />
+        </div>
+
+        <div className="form-group">
+          <label className={classes.label} htmlFor="alcoholContent">
+            AlcoholContent
+          </label>
+          <input
+            id="alcoholContent"
+            type="text"
+            name="alcoholContent"
+            className={"form-control"}
+          />
+        </div>
+
+        <div className="form-group">
+          <label className={classes.label} htmlFor="pints">
+            Pints
+          </label>
+          <input
+            id="pints"
+            type="text"
+            name="pints"
+            className={"form-control"}
+          />
+        </div>
+        <Button
+          className={classes.buttons}
+          onClick={() => props.onHideNewBeerForm()}
+        >
+          Return to beers
+        </Button>
+        <Button
+          style={{ marginLeft: "5px" }}
+          className={classes.buttons}
+          type="submit"
+        >
+          Add Beer
+        </Button>
+      </form>
+    </div>
   );
 };
 

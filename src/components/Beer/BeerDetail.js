@@ -1,81 +1,46 @@
 import React from "react";
 import PropTypes from "prop-types";
-import { Container, Grid } from "@material-ui/core";
+import { Button, makeStyles } from "@material-ui/core";
+
+const useStyles = makeStyles({
+  page: {
+    color: "white",
+    marginTop: "70px",
+    display: "flex",
+    flexDirection: "row",
+    width: "100%",
+  },
+  buttons: {
+    backgroundColor: "white",
+  },
+});
 
 export const BeerDetail = (props) => {
-  const {
-    brand,
-    color,
-    aroma,
-    flavor,
-    alcoholContent,
-    reviews,
-    price,
-    name,
-    pints,
-    id,
-  } = props.beer;
-  const isBackgroundBlack = false;
+  const { beer, onHideBeerDetail } = props;
+  const classes = useStyles();
+
   return (
-    <React.Fragment>
-      <div
-        style={{
-          width: "100%",
-          marginTop: "25%",
-          backgroundColor: isBackgroundBlack ? "black" : "white",
-          alignContent: "left",
-        }}
-      >
-        <Container key={id}>
-          <h1>{name}</h1>
-          <Grid container>
-            <Grid item xs={4}>
-              <p>Brand: {brand}</p>
-              <p>Color: {color}</p>
-              <p>Aroma: {aroma}</p>
-              <p>Flavor: {flavor}</p>
-            </Grid>
-            <Grid item xs={4}>
-              <p>Alcohol Content: {alcoholContent}</p>
-              <p>Price: ${price}</p>
-              <p>Pints Left: {pints}</p>
-            </Grid>
-          </Grid>
-        </Container>
-        <Container>
-          <Grid item xs={12}>
-            <h2>Reviews</h2>
-            {reviews &&
-              Object.values(reviews).map((review) => {
-                let { rating, description } = review;
-                return (
-                  <>
-                    <p>{rating}</p>
-                    <p>{description}</p>
-                  </>
-                );
-              })}
-          </Grid>
-        </Container>
+    <div className={classes.page}>
+      <div className={"col-lg-8 offset-lg-2"}>
+        <h1>{beer.name}</h1>
+        <p>Brand: {beer.brand}</p>
+        <p>Color: {beer.color}</p>
+        <p>Aroma: {beer.aroma}</p>
+        <p>Flavor: {beer.flavor}</p>
+        <p>Alcohol Content: {beer.alcoholContent}</p>
+        <p>Price: ${beer.price}</p>
+        <p>Pints Left: {beer.pints}</p>
+        <Button className={classes.buttons} onClick={() => onHideBeerDetail()}>
+          Return to beers
+        </Button>
       </div>
-    </React.Fragment>
+    </div>
   );
 };
 
 BeerDetail.propTypes = {
   beer: PropTypes.object,
-  id: PropTypes.string,
-  name: PropTypes.string,
-  price: PropTypes.number,
-  alcoholContent: PropTypes.number,
-  aroma: PropTypes.string,
-  color: PropTypes.string,
-  pints: PropTypes.number,
-  flavor: PropTypes.string,
-  brand: PropTypes.string,
-  reviews: PropTypes.object,
-  rating: PropTypes.number,
-  description: PropTypes.string,
+  onHideBeerDetail: PropTypes.func,
 };
 
 export default BeerDetail;

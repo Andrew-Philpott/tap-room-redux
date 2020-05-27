@@ -1,6 +1,5 @@
 import React from "react";
 import { NewBeerForm } from "./NewBeerForm";
-import { Button } from "@material-ui/core";
 import { BeerDetail } from "./BeerDetail";
 import { BeerList } from "./BeerList";
 import { EditBeerForm } from "./EditBeerForm";
@@ -67,58 +66,36 @@ class BeerControl extends React.Component {
 
     if (this.props.editBeerForm) {
       currentlyVisibleState = (
-        <>
-          <EditBeerForm
-            onEditBeerFormSubmission={this.handleEditBeerFormSubmission}
-            beer={this.props.selectBeer}
-          ></EditBeerForm>
-          <Button
-            style={{ backgroundColor: "white" }}
-            onClick={() => this.handleEditBeerFormDisplay()}
-          >
-            Return to beers
-          </Button>
-        </>
+        <EditBeerForm
+          onEditBeerFormSubmission={this.handleEditBeerFormSubmission}
+          beer={this.props.selectBeer}
+          onHideEditBeerForm={this.handleEditBeerFormDisplay}
+        />
       );
     } else if (this.props.selectBeer != null) {
       currentlyVisibleState = (
-        <>
-          <BeerDetail beer={this.props.selectBeer}></BeerDetail>
-          <Button
-            style={{ backgroundColor: "white" }}
-            onClick={() => this.handleSelectBeer()}
-          >
-            Return to beers
-          </Button>
-        </>
+        <BeerDetail
+          onHideBeerDetail={this.handleSelectBeer}
+          beer={this.props.selectBeer}
+        />
       );
     } else if (this.props.newBeerForm) {
       currentlyVisibleState = (
-        <>
-          <NewBeerForm
-            onNewBeerFormSubmission={this.handleNewBeerFormSubmission}
-          ></NewBeerForm>
-          <Button
-            style={{ backgroundColor: "white" }}
-            onClick={() => this.handleNewBeerFormDisplay()}
-          >
-            Return to beers
-          </Button>
-        </>
+        <NewBeerForm
+          onNewBeerFormSubmission={this.handleNewBeerFormSubmission}
+        />
       );
     } else {
       currentlyVisibleState = (
-        <>
-          <BeerList
-            onBeerPintIncrement={this.handleIncrementingBeerPints}
-            onBeerPintDecrement={this.handleDecrementingBeerPints}
-            onDisplayBeerDetail={this.handleSelectBeer}
-            onDeleteBeer={this.handleDeleteBeer}
-            onDisplayEditBeerForm={this.handleEditBeerFormDisplay}
-            onDisplayNewBeerForm={this.handleNewBeerFormDisplay}
-            beerList={this.props.beerList}
-          />
-        </>
+        <BeerList
+          onBeerPintIncrement={this.handleIncrementingBeerPints}
+          onBeerPintDecrement={this.handleDecrementingBeerPints}
+          onDisplayBeerDetail={this.handleSelectBeer}
+          onDeleteBeer={this.handleDeleteBeer}
+          onDisplayEditBeerForm={this.handleEditBeerFormDisplay}
+          onDisplayNewBeerForm={this.handleNewBeerFormDisplay}
+          beerList={this.props.beerList}
+        />
       );
     }
     return <>{currentlyVisibleState}</>;
