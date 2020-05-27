@@ -6,7 +6,7 @@
 
 #### By **Andrew Philpott**
 
-[About](#About) | [Prompt](#Prompt) | [User Stories](#User-Stories) | [React Component Diagrams](#React-Component-Diagrams) | [Bugs](#Known-Bugs) | [Technologies](#Technologies-Used) | [Contact](#Support-and-Contact-Details)
+[About](#About) | [Prompt](#Prompt) | [User Stories](#User-Stories) | [React Diagrams](#React-Diagrams) | [Bugs](#Known-Bugs) | [Technologies](#Technologies-Used) | [Contact](#Support-and-Contact-Details)
 
 </div>
 
@@ -87,12 +87,15 @@ No known bugs at this time.
 - Material UI
 - React
 - Draw.io
+- Babel
+- Webpack
+- Bootstrap
 
 ## Support and Contact Details
 
 Feel free to provide feedback via email: andrewphilpott92@gmail.com
 
-### License
+## License
 
 This application is licensed under the MIT license.
 
